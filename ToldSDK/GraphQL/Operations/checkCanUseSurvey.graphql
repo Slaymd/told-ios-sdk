@@ -1,0 +1,3 @@
+query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $hostname: String!, $preview: Boolean) {
+    checkIfCanUseWidgetWithSurvey(surveyID: $surveyID, hostname: $hostname, preview: $preview)
+}

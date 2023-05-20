@@ -5,4 +5,12 @@
 //  Created by Darius MARTIN on 14/05/2023.
 //
 
-import Foundation
+internal extension Date {
+    
+    func getISODateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.string(from: self)
+    }
+    
+}

@@ -1,0 +1,52 @@
+query getEverySurveyAvailableToBeTriggered($folderID: ID!, $navigator: String, $hostname: String!, $language: String, $device: String, $listReplied: [SurveyReplied], $preview: Boolean) {
+    getEverySurveyAvailableToBeTriggered(folderID: $folderID, navigator: $navigator, hostname: $hostname, language: $language, device: $device, listReplied: $listReplied, preview: $preview) {
+      id
+      survey
+      kind
+      ... on SurveyTriggerURL {
+        onAllUrl
+        onLoadPage
+        delay {
+          value
+          active
+        }
+        scroll {
+          value
+          active
+        }
+        condition {
+          variable
+          operator
+          value
+        }
+      }
+      
+      ... on SurveyTriggerScreen {
+        onAllScreen
+        onLoadScreen
+        delay {
+          value
+          active
+        }
+        condition {
+          variable
+          operator
+          value
+        }
+      }
+
+      ... on SurveyTriggerClick {
+        variable
+        value
+      }
+
+      ... on SurveyTriggerCustomEvent {
+        eventName
+        conditions {
+          key
+          operator
+          value
+        }
+      }
+    }
+  }

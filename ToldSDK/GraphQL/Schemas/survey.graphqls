@@ -1,0 +1,104 @@
+scalar Date
+
+  type Query {
+    _empty: String
+  }
+
+  interface SurveyTrigger {
+    id: ID!
+    survey: ID!
+    kind: String
+  }
+
+  type SurveyTriggerDelay {
+    value: Int!
+    active: Boolean!
+  }
+
+  input SurveyTriggerDelayInput {
+    value: Int
+    active: Boolean
+  }
+
+  type SurveyTriggerURLScroll {
+    value: Int!
+    active: Boolean!
+  }
+
+  input SurveyTriggerURLScrollInput {
+    value: Int
+    active: Boolean
+  }
+
+  type SurveyTriggerURLCondition {
+    variable: String!
+    operator: String!
+    value: String!
+  }
+
+  input SurveyTriggerURLConditionInput {
+    variable: String!
+    operator: String!
+    value: String!
+  }
+
+  type SurveyTriggerURL implements SurveyTrigger {
+    id: ID!
+    survey: ID!
+    kind: String
+    onAllUrl: Boolean
+    onLoadPage: Boolean
+    delay: SurveyTriggerDelay
+    scroll: SurveyTriggerURLScroll
+    condition: SurveyTriggerURLCondition
+  }
+
+  type SurveyTriggerScreen implements SurveyTrigger {
+    id: ID!
+    survey: ID!
+    kind: String
+    onAllScreen: Boolean
+    onLoadScreen: Boolean
+    delay: SurveyTriggerDelay
+    condition: SurveyTriggerURLCondition
+  }
+
+  type SurveyTriggerClick implements SurveyTrigger {
+    id: ID!
+    survey: ID!
+    kind: String
+    variable: String!
+    value: String!
+  }
+
+  type SurveyTriggerCustomEventCondition {
+    key: String
+    operator: String
+    value: String
+  }
+
+  input SurveyTriggerCustomEventConditionInput {
+    key: String
+    operator: String
+    value: String
+  }
+
+
+  type SurveyTriggerCustomEvent implements SurveyTrigger {
+    id: ID!
+    survey: ID!
+    kind: String
+    eventName: String
+    conditions: [SurveyTriggerCustomEventCondition]
+  }
+
+  input SurveyReplied {
+    surveyId: ID
+    date: Date
+    replied: Boolean
+  }
+
+  extend type Query {
+    checkIfCanUseWidgetWithSurvey(surveyID: ID!, hostname: String!, preview: Boolean): Boolean
+    getEverySurveyAvailableToBeTriggered(folderID: ID!, hostname: String!, navigator: String, language: String, country: String, device: String, listReplied: [SurveyReplied], preview: Boolean): [SurveyTrigger]
+  }

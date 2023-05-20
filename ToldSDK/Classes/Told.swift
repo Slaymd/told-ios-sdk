@@ -5,4 +5,166 @@
 //  Created by Darius MARTIN on 27/04/2023.
 //
 
-import Foundation
+import Apollo
+
+//let SERVER_API_URL = "http://192.168.1.55:7700"
+//let SERVER_API_URL = "https://preprodinternapi.evoltapp.com"
+let SERVER_API_URL = "https://api.told.club"
+//let WIDGET_URL = "http://192.168.1.55:3001"
+//let WIDGET_URL = "https://preprodwidget.evoltapp.com"
+let WIDGET_URL = "https://widget.told.club"
+
+public class Told {
+    
+    internal static var currentViewController: UIViewController?
+    internal static var currentViewControllerName: String? {
+        didSet {
+            checkScreenTriggers(currentViewControllerName ?? "", currentViewController)
+        }
+    }
+        
+    private static let apiClient = ApolloClient(url: URL(string: "\(SERVER_API_URL)/graphql")!)
+    
+    private static let storage = ToldStorage()
+    
+    private static var widgets: [ToldWidget] = []
+    
+    private static var loadingTriggers = false
+    private static var triggers: [ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered?] = []
+    
+    private static var currentProjectId: String?
+    private static var defaultParams: [ToldSurveyParams] = []
+    
+    // MARK: Public methods
+            
+    public static func initSDK(projectId: String, language: String = "fr", params: [ToldSurveyParams] = []) {
+                
+        if (loadingTriggers) { return }
+        
+        currentProjectId = projectId
+                        
+        loadingTriggers = true
+        
+        defaultParams = params
+                        
+        apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, navigator: "safari", hostname: "http://localhost", language: .some(language), device: "phone", listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
+                                    
+            guard let data = try? result.get().data else {
+                loadingTriggers = false
+                return
+            }
+                        
+            triggers = data?.getEverySurveyAvailableToBeTriggered ?? []
+            
+            print("Initializing \(data?.getEverySurveyAvailableToBeTriggered?.count ?? 0) survey triggers.")
+            
+            loadingTriggers = false
+            
+            return
+        }
+                
+    }
+    
+    public static func start(id surveyId: String, projectId: String) {
+        start(id: surveyId, projectId: projectId, params: [])
+    }
+    
+    public static func start(id surveyId: String, projectId: String, params: [ToldSurveyParams]) {
+        if currentViewController != nil {
+            start(id: surveyId, projectId: projectId, params: params, viewController: currentViewController!)
+        } else {
+            print("Cannot display survey \(surveyId) because no view controller appeared.")
+        }
+    }
+    
+    public static func start(id surveyId: String, projectId: String, params: [ToldSurveyParams], viewController vc: UIViewController) {
+
+        checkIfCanUseThisSurvey(surveyId: surveyId, params: params) { canUse in
+
+            if (!canUse) {
+                print("Cannot display survey \(surveyId). Check if survey is correctly configured and enabled on website. Or already seen ?")
+                return
+            }
+            
+            let widget = ToldWidget(surveyId: surveyId, projectId: projectId, mode: params.contains(.preview) ? .preview : params.contains(.debug) ? .debug : .production) { replied in
+                storage.setReplied(surveyId: surveyId)
+            }
+            widgets.append(widget)
+            vc.view.addSubview(widget.view)
+            
+            storage.setSeen(surveyId: surveyId)
+        }
+    }
+    
+    // MARK: Private methods
+    
+    private static func checkIfCanUseThisSurvey(surveyId: String, params: [ToldSurveyParams], completion: @escaping (Bool) -> ()) {
+        
+        if (params.contains(.seeItOnlyOnce) && storage.isReplied(surveyId: surveyId)) {
+            completion(false)
+            return
+        }
+        
+        apiClient.fetch(query: ToldAPI.CheckIfCanUseWidgetWithSurveyQuery(surveyID: surveyId, hostname: "http://localhost", preview: .some(params.contains(.preview)))) { result in
+            guard let data = try? result.get().data else {
+                completion(false)
+                return
+            }
+            if let checkIfCanUseWidgetWithSurvey = data?.checkIfCanUseWidgetWithSurvey {
+                completion(checkIfCanUseWidgetWithSurvey)
+                return
+            }
+            
+            completion(false)
+            return
+        }
+        
+    }
+    
+    private static func waitForLoading(completion: @escaping () -> Void) {
+        DispatchQueue.global().async {
+            while loadingTriggers {
+                // Wait
+                Thread.sleep(forTimeInterval: 0.1)
+            }
+            
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    private static func checkScreenTriggers(_ screenName: String, _ viewController: UIViewController?) {
+        
+        if (viewController == nil) { return }
+        
+        // Wait while init isn't finished
+        waitForLoading {
+                                    
+            for surveyTrigger in triggers {
+                
+                guard let screenTrigger = surveyTrigger?.asSurveyTriggerScreen else {
+                    continue
+                }
+             
+                if screenTrigger.onAllScreen ?? false || ToldUtils.isTriggerConditionTrue(condition: screenTrigger.condition, arg: screenName) {
+                    
+                    let delayEnabled = screenTrigger.delay?.active ?? false
+                    let delayValue = delayEnabled ? screenTrigger.delay?.value ?? 0 : 0
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(delayValue)) {
+                        
+                        print("Triggered survey: \(screenTrigger.survey) on screen \(screenName)")
+                                                
+                        Told.start(id: screenTrigger.survey, projectId: currentProjectId ?? "", params: defaultParams, viewController: viewController!)
+                        
+                    }
+                                        
+                }
+                                
+            }
+        }
+        
+    }
+    
+}

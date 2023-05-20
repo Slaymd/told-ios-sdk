@@ -1,5 +1,5 @@
 //
-//  ToldModeHandler.swift
+//  ToldWidget.swift
 //  ToldSDK
 //
 //  Created by Darius MARTIN on 26/04/2023.
@@ -8,86 +8,143 @@
 import UIKit
 import WebKit
 
-enum MODE {
-    case PRODUCTION, PREVIEW, DEBUG
-}
-
-@available(iOS 11.0, *)
-public class Widget: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
+internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
+    // Widget variables
+    private var surveyId: String
+    private var projectId: String
+    private var mode: ToldWidgetMode
+    private var closeCallback: (_ replied: Bool) -> Void
+    
+    
+    // UI variables
     private var webView: WKWebView!
-    private var mode = MODE.PRODUCTION {
-        didSet {
-            
-        }
+    private var heightConstraint: NSLayoutConstraint?
+    
+    // MARK: Init
+    
+    init(surveyId: String, projectId: String, mode: ToldWidgetMode, closeCallback: @escaping (_ replied: Bool) -> Void) {
+        self.surveyId = surveyId
+        self.projectId = projectId
+        self.mode = mode
+        self.closeCallback = closeCallback
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let config = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
 
-        // Ajouter un script utilisateur pour écouter les messages
+        // User script to listen postMessage in webview
         userContentController.add(self, name: "iosListener")
         userContentController.add(self, name: "logsHandler")
-
-//        config.preferences.javaScriptEnabled = true
-//        config.preferences.javaScriptCanOpenWindowsAutomatically = true
         
         config.userContentController = userContentController
         
-        // Créez une instance de WKWebView qui remplit l'écran
+        // Create webview instance
         webView = WKWebView(frame: .zero, configuration: config)
-//        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        webView.navigationDelegate = self
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         
+        webView.alpha = 0.0
         view.addSubview(webView)
         
-        let guide = view.safeAreaLayoutGuide
+        // Add style constraint
+        self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)
+        heightConstraint!.isActive = true
+        
+        let guide = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            webView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
-            webView.heightAnchor.constraint(equalTo: guide.heightAnchor, multiplier: 0.9),
-            webView.widthAnchor.constraint(equalTo: guide.widthAnchor)
+            webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: 0),
+            webView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 0),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            heightConstraint!,
         ])
         
         webView.layer.cornerRadius = 25.0
         webView.layer.masksToBounds = true
         
-//        let urlStr = "https://widget.evoltapp.com/?id=643e93184e7ff9001bd4577a&toldProjectID=63a2ef43fb1f6b00156aa375"
-//        let urlStr = "https://preprodwidget.evoltapp.com/?id=644248ad1261b700150b5e86&toldProjectID=644248a01261b700150b5dde"
-        
-        // Chargez une URL dans la WebView
-//        if let url = URL(string: urlStr) {
-//            webView.load(URLRequest(url: url))
-//        }
-        
-//        if let url = URL(string: "https://google.fr/") {
-//            webView.load(URLRequest(url: url))
-//        }
-        
         webView.isHidden = true
+        
+        loadWidget()
     }
     
-    // Masquez la barre d'état lorsque la vue est chargée
-    public override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    // MARK: Public methods
     
-    public func show(id: String, projectId: String) {
-        if let url = URL(string: "https://preprodwidget.evoltapp.com/?id=\(id)&toldProjectID=\(projectId)") {
+    public func loadWidget() {
+        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)") {
             webView.load(URLRequest(url: url))
         }
-        webView.isHidden = false
     }
     
     public func close() {
-        webView.isHidden = true
+        UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.webView.alpha = 0.0
+        }) { _ in
+            self.webView.isHidden = true
+            self.view.removeFromSuperview()
+        }
+    }
+    
+    // MARK: Private methods
+    
+    private func onMessageReceived(values: [String: Any]) {
+        guard let type = values["type"] as? String else {
+            return;
+        }
+        
+        switch type {
+        case "IS_LOADED":
+            // Send initial ios configuration messages to survey
+            self.webView.evaluateJavaScript("window.postMessage({type: 'OS_TYPE', value: 'IOS'}, '*'); window.postMessage({type: 'DEVICE_TYPE', value: 'phone'}, '*');")
+            webView.isHidden = false
+            
+            UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.webView.alpha = 1.0
+            }, completion: nil)
+            
+            let safeAreaBottomHeight = view.safeAreaInsets.bottom
+            
+            self.webView.evaluateJavaScript("window.postMessage({type: 'SAFE_AREA', value: '\(safeAreaBottomHeight)'}, '*');")
+            
+            self.heightConstraint?.constant = 220 + safeAreaBottomHeight
+            break
+        case "UPDATE_SIZE":
+            guard let value = values["value"] as? String else {
+                return;
+            }
+                        
+            if (value != "openMobile") {
+                break
+            }
+
+            UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                let frame = self.view.safeAreaLayoutGuide.layoutFrame
+                self.heightConstraint?.constant = frame.height * 0.9
+            }, completion: nil)
+
+            break
+        case "ADD_COOKIE":
+            guard let reply = values["reply"] as? Bool else {
+                return;
+            }
+            self.closeCallback(reply)
+            break
+        case "CLOSE":
+            self.closeCallback(false)
+            close()
+            break
+        default:
+            break
+        }
     }
     
     // MARK: WKScriptMessageHandler
@@ -98,36 +155,32 @@ public class Widget: UIViewController, WKNavigationDelegate, WKScriptMessageHand
             return
         }
                 
-        if (message.name == "logsHandler" && mode == .DEBUG) {
+        if (message.name == "logsHandler" && mode == .debug) {
             print("[LOG]", message.body)
         } else if (message.name == "iosListener") {
-            print("[MSG RECEIVED]", message.body)
             
+            if (mode == .debug) {
+                print("[MSG RECEIVED]", message.body)
+            }
+
             do {
                 let json = try JSONSerialization.jsonObject(with: bodyData.data(using: .utf8)!, options: [])
                 if let dict = json as? [String: Any] {
-                    // Utilisez le dictionnaire 'dict' ici
-                    print(dict)
+                    onMessageReceived(values: dict)
                 }
             } catch {
-                print("Erreur lors du parsing du JSON : \(error.localizedDescription)")
+                print("Error while parsing Told received message : \(error.localizedDescription)")
             }
             
         }
-//        print("message body: \(message.body)")
-//        print("message frameInfo: \(message.frameInfo)")
     }
     
     // MARK: WKNavigationDelegate
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // Intercepts logs for debug mode
         self.webView.evaluateJavaScript("function captureLog(msg, other = '') { window.webkit.messageHandlers.logsHandler.postMessage(msg + other); } window.console.log = captureLog;")
-        
-        // Send initial ios configuration messages to survey
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.webView.evaluateJavaScript("window.postMessage({type: 'OS_TYPE', value: 'IOS'}, 'https://preprodwidget.evoltapp.com/?id=644248ad1261b700150b5e86&toldProjectID=644248a01261b700150b5dde'); window.postMessage({type: 'DEVICE_TYPE', value: 'phone'}, '*');")
-        }
-        
+                
         // Webview finished to load, inject javascript code to transfers messages to iOS SDK
         self.webView.evaluateJavaScript("window.addEventListener('message', (e) => { window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(e.data), '*'); });")
     }

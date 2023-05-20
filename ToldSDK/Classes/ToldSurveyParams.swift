@@ -5,4 +5,6 @@
 //  Created by Darius MARTIN on 07/05/2023.
 //
 
-import Foundation
+public enum ToldSurveyParams {
+    case seeItOnlyOnce, preview, debug
+}

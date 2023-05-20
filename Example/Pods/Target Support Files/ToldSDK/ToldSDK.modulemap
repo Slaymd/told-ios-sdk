@@ -1,0 +1,6 @@
+framework module ToldSDK {
+  umbrella header "ToldSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

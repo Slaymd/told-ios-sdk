@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'ToldSDK'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of ToldSDK.'
+  s.name             = 'Told'
+  s.version          = '1.0.0'
+  s.summary          = 'Official Told iOS SDK'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,19 +18,21 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  Official Told iOS SDK, a new way to collect feedbacks !
                        DESC
 
-  s.homepage         = 'https://github.com/Darius/ToldSDK'
+  s.homepage         = 'https://github.com/Slaymd/told-ios-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Darius' => 'darius.mtn@gmail.com' }
-  s.source           = { :git => 'https://github.com/Darius/ToldSDK.git', :tag => s.version.to_s }
+  s.author           = { 'Told' => 'contact@told.club' }
+  s.source           = { :git => 'https://github.com/Slaymd/told-ios-sdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'ToldSDK/Classes/**/*'
+  
+  s.swift_version = '4.0'
   
   # s.resource_bundles = {
   #   'ToldSDK' => ['ToldSDK/Assets/*.png']
@@ -38,5 +40,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Apollo', '~> 1.1.3'
 end

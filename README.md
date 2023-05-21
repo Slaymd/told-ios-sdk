@@ -51,3 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ## License
 
 ToldSDK is available under the MIT license. See the LICENSE file for more info.
+
+## Maintainers
+
+Follow this steps to publish a new release :
+
+* Increment version in Told.podspec
+* Create a git tag `git tag <version>` and push it with `git push --tags`
+* Publish version to Cocoapods : `pod trunk push Told.podspec`

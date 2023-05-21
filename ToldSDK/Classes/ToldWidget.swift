@@ -56,6 +56,7 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
         
         webView.alpha = 0.0
         view.addSubview(webView)
+        view.bringSubview(toFront: webView)
         
         // Add style constraint
         self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)

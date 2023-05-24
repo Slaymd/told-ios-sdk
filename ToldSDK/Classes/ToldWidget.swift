@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
+internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler {
     
     // Widget variables
     private var surveyId: String
@@ -28,16 +28,28 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
         self.projectId = projectId
         self.mode = mode
         self.closeCallback = closeCallback
-        super.init(nibName: nil, bundle: nil)
+                
+        super.init(frame: .zero)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-                
+    public func setup() {
+        
+        if let superview = superview {
+            
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                topAnchor.constraint(equalTo: superview.topAnchor),
+                leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+                trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+                bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+            ])
+        }
+        
         let config = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
 
@@ -55,18 +67,19 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
         webView.navigationDelegate = self
         
         webView.alpha = 0.0
-        view.addSubview(webView)
-        view.bringSubview(toFront: webView)
-        
+        self.addSubview(webView)
+        self.bringSubview(toFront: webView)
+    
         // Add style constraint
         self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)
         heightConstraint!.isActive = true
         
-        let guide = view.layoutMarginsGuide
+        let guide = self.layoutMarginsGuide
+         
         NSLayoutConstraint.activate([
-            webView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: 0),
-            webView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 0),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            webView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            webView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            webView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             heightConstraint!,
         ])
         
@@ -81,7 +94,11 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
     // MARK: Public methods
     
     public func loadWidget() {
-        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)") {
+        let hasHiddenParams = Told.currentHiddenParamsFormatted.count > 0
+        let hiddenParamsQueryURL = hasHiddenParams ? "&\(Told.currentHiddenParamsFormatted)" : ""
+        
+        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenParamsQueryURL)") {
+            print("load", url)
             webView.load(URLRequest(url: url))
         }
     }
@@ -91,7 +108,7 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
             self.webView.alpha = 0.0
         }) { _ in
             self.webView.isHidden = true
-            self.view.removeFromSuperview()
+            self.removeFromSuperview()
         }
     }
     
@@ -112,7 +129,7 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
                 self.webView.alpha = 1.0
             }, completion: nil)
             
-            let safeAreaBottomHeight = view.safeAreaInsets.bottom
+            let safeAreaBottomHeight = self.safeAreaInsets.bottom
             
             self.webView.evaluateJavaScript("window.postMessage({type: 'SAFE_AREA', value: '\(safeAreaBottomHeight)'}, '*');")
             
@@ -128,7 +145,7 @@ internal class ToldWidget: UIViewController, WKNavigationDelegate, WKScriptMessa
             }
 
             UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                let frame = self.view.safeAreaLayoutGuide.layoutFrame
+                let frame = self.safeAreaLayoutGuide.layoutFrame
                 self.heightConstraint?.constant = frame.height * 0.9
             }, completion: nil)
 

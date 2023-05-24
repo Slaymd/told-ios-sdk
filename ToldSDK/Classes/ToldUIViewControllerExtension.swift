@@ -17,10 +17,15 @@ extension UIViewController {
 
     @objc func swizzled_viewDidAppear(_ animated: Bool) {
         swizzled_viewDidAppear(animated)
+        
+        let bundleExecutableName = Bundle.main.object(forInfoDictionaryKey: "CFBundleExecutable") as? String
 
         var viewControllerName = NSStringFromClass(type(of: self))
-        viewControllerName = viewControllerName.replacingOccurrences(of: "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleExecutable") as? String ?? "").", with: "")
         
+        if (!viewControllerName.starts(with: "\(bundleExecutableName ?? "").")) { return }
+                
+        viewControllerName = viewControllerName.replacingOccurrences(of: "\(bundleExecutableName ?? "").", with: "")
+      
         Told.currentViewController = self
         Told.currentViewControllerName = viewControllerName
     }

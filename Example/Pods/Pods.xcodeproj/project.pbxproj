@@ -91,24 +91,22 @@
 		B3427A1386A67FAC7A393352A2FA72CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		B5D8DA09CA8EAC13EF7107188FC406E0 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141370F2A12DCC3106CBCB0D20082EED /* HTTPResponse.swift */; };
 		B712BBCC9F002EDF3211895C24DD165A /* JSONStandardTypeConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D09B9BFC69C57BD3473531CFD2613 /* JSONStandardTypeConversions.swift */; };
-		B9286F832A17B825005EB395 /* ToldAPI.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F6B2A17B825005EB395 /* ToldAPI.graphql.swift */; };
-		B9286F842A17B825005EB395 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F6E2A17B825005EB395 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */; };
-		B9286F852A17B825005EB395 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F6F2A17B825005EB395 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */; };
-		B9286F862A17B825005EB395 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F722A17B825005EB395 /* Date.swift */; };
-		B9286F872A17B825005EB395 /* SurveyTriggerCustomEvent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F742A17B825005EB395 /* SurveyTriggerCustomEvent.graphql.swift */; };
-		B9286F882A17B826005EB395 /* SurveyTriggerURL.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F752A17B825005EB395 /* SurveyTriggerURL.graphql.swift */; };
-		B9286F892A17B826005EB395 /* SurveyTriggerDelay.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F762A17B825005EB395 /* SurveyTriggerDelay.graphql.swift */; };
-		B9286F8A2A17B826005EB395 /* SurveyTriggerClick.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F772A17B825005EB395 /* SurveyTriggerClick.graphql.swift */; };
-		B9286F8B2A17B826005EB395 /* Query.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F782A17B825005EB395 /* Query.graphql.swift */; };
-		B9286F8C2A17B826005EB395 /* SurveyTriggerCustomEventCondition.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F792A17B825005EB395 /* SurveyTriggerCustomEventCondition.graphql.swift */; };
-		B9286F8D2A17B826005EB395 /* SurveyTriggerURLScroll.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F7A2A17B825005EB395 /* SurveyTriggerURLScroll.graphql.swift */; };
-		B9286F8E2A17B826005EB395 /* SurveyTriggerScreen.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F7B2A17B825005EB395 /* SurveyTriggerScreen.graphql.swift */; };
-		B9286F8F2A17B826005EB395 /* SurveyTriggerURLCondition.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F7C2A17B825005EB395 /* SurveyTriggerURLCondition.graphql.swift */; };
-		B9286F902A17B826005EB395 /* SchemaConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F7D2A17B825005EB395 /* SchemaConfiguration.swift */; };
-		B9286F912A17B826005EB395 /* SurveyReplied.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F7F2A17B825005EB395 /* SurveyReplied.graphql.swift */; };
-		B9286F922A17B826005EB395 /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F802A17B825005EB395 /* SchemaMetadata.graphql.swift */; };
-		B9286F932A17B826005EB395 /* SurveyTrigger.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9286F822A17B825005EB395 /* SurveyTrigger.graphql.swift */; };
 		B92C0CAC2A1900E0002B3A46 /* ToldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CAB2A1900DF002B3A46 /* ToldUtils.swift */; };
+		B92C0CC52A1E584A002B3A46 /* ToldAPI.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CAF2A1E584A002B3A46 /* ToldAPI.graphql.swift */; };
+		B92C0CC62A1E584A002B3A46 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CB22A1E584A002B3A46 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */; };
+		B92C0CC72A1E584A002B3A46 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CB32A1E584A002B3A46 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */; };
+		B92C0CC82A1E584A002B3A46 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CB62A1E584A002B3A46 /* Date.swift */; };
+		B92C0CC92A1E584A002B3A46 /* SurveyTriggerCustomEvent.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CB82A1E584A002B3A46 /* SurveyTriggerCustomEvent.graphql.swift */; };
+		B92C0CCA2A1E584A002B3A46 /* SurveyTriggerURL.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CB92A1E584A002B3A46 /* SurveyTriggerURL.graphql.swift */; };
+		B92C0CCB2A1E584A002B3A46 /* SurveyTriggerDelay.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBA2A1E584A002B3A46 /* SurveyTriggerDelay.graphql.swift */; };
+		B92C0CCC2A1E584A002B3A46 /* SurveyTriggerClick.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBB2A1E584A002B3A46 /* SurveyTriggerClick.graphql.swift */; };
+		B92C0CCD2A1E584A002B3A46 /* Query.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBC2A1E584A002B3A46 /* Query.graphql.swift */; };
+		B92C0CCE2A1E584A002B3A46 /* SurveyTriggerScreen.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBD2A1E584A002B3A46 /* SurveyTriggerScreen.graphql.swift */; };
+		B92C0CCF2A1E584A002B3A46 /* SurveyTriggerURLCondition.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBE2A1E584A002B3A46 /* SurveyTriggerURLCondition.graphql.swift */; };
+		B92C0CD02A1E584A002B3A46 /* SchemaConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CBF2A1E584A002B3A46 /* SchemaConfiguration.swift */; };
+		B92C0CD12A1E584A002B3A46 /* SurveyReplied.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CC12A1E584A002B3A46 /* SurveyReplied.graphql.swift */; };
+		B92C0CD22A1E584A002B3A46 /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CC22A1E584A002B3A46 /* SchemaMetadata.graphql.swift */; };
+		B92C0CD32A1E584A002B3A46 /* SurveyTrigger.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CC42A1E584A002B3A46 /* SurveyTrigger.graphql.swift */; };
 		B957ED0C2A11294A007AC8C6 /* ToldDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957ED0B2A11294A007AC8C6 /* ToldDateExtension.swift */; };
 		B97F2F632A066C8D0048BFEB /* checkCanUseSurvey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B97F2F5B2A066C8C0048BFEB /* checkCanUseSurvey.graphql */; };
 		B97F2F642A066C8D0048BFEB /* survey.graphqls in Resources */ = {isa = PBXBuildFile; fileRef = B97F2F5D2A066C8D0048BFEB /* survey.graphqls */; };
@@ -271,24 +269,22 @@
 		B5A49A011108FFEC5E3819916062FF88 /* Pods-ToldSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ToldSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		B8B292F872CC9D0205FDE9818782580C /* InputValue+Evaluation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "InputValue+Evaluation.swift"; path = "Sources/Apollo/InputValue+Evaluation.swift"; sourceTree = "<group>"; };
 		B90D825AD3F4AF662D300A7EF5B33566 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		B9286F6B2A17B825005EB395 /* ToldAPI.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToldAPI.graphql.swift; sourceTree = "<group>"; };
-		B9286F6E2A17B825005EB395 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfCanUseWidgetWithSurveyQuery.graphql.swift; sourceTree = "<group>"; };
-		B9286F6F2A17B825005EB395 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift; sourceTree = "<group>"; };
-		B9286F722A17B825005EB395 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		B9286F742A17B825005EB395 /* SurveyTriggerCustomEvent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerCustomEvent.graphql.swift; sourceTree = "<group>"; };
-		B9286F752A17B825005EB395 /* SurveyTriggerURL.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerURL.graphql.swift; sourceTree = "<group>"; };
-		B9286F762A17B825005EB395 /* SurveyTriggerDelay.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerDelay.graphql.swift; sourceTree = "<group>"; };
-		B9286F772A17B825005EB395 /* SurveyTriggerClick.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerClick.graphql.swift; sourceTree = "<group>"; };
-		B9286F782A17B825005EB395 /* Query.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.graphql.swift; sourceTree = "<group>"; };
-		B9286F792A17B825005EB395 /* SurveyTriggerCustomEventCondition.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerCustomEventCondition.graphql.swift; sourceTree = "<group>"; };
-		B9286F7A2A17B825005EB395 /* SurveyTriggerURLScroll.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerURLScroll.graphql.swift; sourceTree = "<group>"; };
-		B9286F7B2A17B825005EB395 /* SurveyTriggerScreen.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerScreen.graphql.swift; sourceTree = "<group>"; };
-		B9286F7C2A17B825005EB395 /* SurveyTriggerURLCondition.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerURLCondition.graphql.swift; sourceTree = "<group>"; };
-		B9286F7D2A17B825005EB395 /* SchemaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaConfiguration.swift; sourceTree = "<group>"; };
-		B9286F7F2A17B825005EB395 /* SurveyReplied.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyReplied.graphql.swift; sourceTree = "<group>"; };
-		B9286F802A17B825005EB395 /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
-		B9286F822A17B825005EB395 /* SurveyTrigger.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTrigger.graphql.swift; sourceTree = "<group>"; };
 		B92C0CAB2A1900DF002B3A46 /* ToldUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToldUtils.swift; path = ToldSDK/Classes/ToldUtils.swift; sourceTree = "<group>"; };
+		B92C0CAF2A1E584A002B3A46 /* ToldAPI.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToldAPI.graphql.swift; sourceTree = "<group>"; };
+		B92C0CB22A1E584A002B3A46 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckIfCanUseWidgetWithSurveyQuery.graphql.swift; sourceTree = "<group>"; };
+		B92C0CB32A1E584A002B3A46 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift; sourceTree = "<group>"; };
+		B92C0CB62A1E584A002B3A46 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		B92C0CB82A1E584A002B3A46 /* SurveyTriggerCustomEvent.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerCustomEvent.graphql.swift; sourceTree = "<group>"; };
+		B92C0CB92A1E584A002B3A46 /* SurveyTriggerURL.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerURL.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBA2A1E584A002B3A46 /* SurveyTriggerDelay.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerDelay.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBB2A1E584A002B3A46 /* SurveyTriggerClick.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerClick.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBC2A1E584A002B3A46 /* Query.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBD2A1E584A002B3A46 /* SurveyTriggerScreen.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerScreen.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBE2A1E584A002B3A46 /* SurveyTriggerURLCondition.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTriggerURLCondition.graphql.swift; sourceTree = "<group>"; };
+		B92C0CBF2A1E584A002B3A46 /* SchemaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaConfiguration.swift; sourceTree = "<group>"; };
+		B92C0CC12A1E584A002B3A46 /* SurveyReplied.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyReplied.graphql.swift; sourceTree = "<group>"; };
+		B92C0CC22A1E584A002B3A46 /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
+		B92C0CC42A1E584A002B3A46 /* SurveyTrigger.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTrigger.graphql.swift; sourceTree = "<group>"; };
 		B957ED0B2A11294A007AC8C6 /* ToldDateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToldDateExtension.swift; path = ToldSDK/Classes/ToldDateExtension.swift; sourceTree = "<group>"; };
 		B97F2F5B2A066C8C0048BFEB /* checkCanUseSurvey.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = checkCanUseSurvey.graphql; sourceTree = "<group>"; };
 		B97F2F5D2A066C8D0048BFEB /* survey.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = survey.graphqls; sourceTree = "<group>"; };
@@ -370,7 +366,7 @@
 		154F2AD2A430C8829B90501788346B05 /* ToldSDK */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F6A2A17B825005EB395 /* API */,
+				B92C0CAE2A1E584A002B3A46 /* API */,
 				B97F2F592A066C8C0048BFEB /* GraphQL */,
 				08AE7A10CE8E521B759830958EE34554 /* Told.swift */,
 				B97F2F872A07C87E0048BFEB /* ToldStorage.swift */,
@@ -574,83 +570,81 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		B9286F6A2A17B825005EB395 /* API */ = {
+		B92C0CAE2A1E584A002B3A46 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F6B2A17B825005EB395 /* ToldAPI.graphql.swift */,
-				B9286F6C2A17B825005EB395 /* Operations */,
-				B9286F702A17B825005EB395 /* Schema */,
+				B92C0CAF2A1E584A002B3A46 /* ToldAPI.graphql.swift */,
+				B92C0CB02A1E584A002B3A46 /* Operations */,
+				B92C0CB42A1E584A002B3A46 /* Schema */,
 			);
 			name = API;
 			path = ToldSDK/Classes/API;
 			sourceTree = "<group>";
 		};
-		B9286F6C2A17B825005EB395 /* Operations */ = {
+		B92C0CB02A1E584A002B3A46 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F6D2A17B825005EB395 /* Queries */,
+				B92C0CB12A1E584A002B3A46 /* Queries */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
 		};
-		B9286F6D2A17B825005EB395 /* Queries */ = {
+		B92C0CB12A1E584A002B3A46 /* Queries */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F6E2A17B825005EB395 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */,
-				B9286F6F2A17B825005EB395 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */,
+				B92C0CB22A1E584A002B3A46 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift */,
+				B92C0CB32A1E584A002B3A46 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
 		};
-		B9286F702A17B825005EB395 /* Schema */ = {
+		B92C0CB42A1E584A002B3A46 /* Schema */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F712A17B825005EB395 /* CustomScalars */,
-				B9286F732A17B825005EB395 /* Objects */,
-				B9286F7D2A17B825005EB395 /* SchemaConfiguration.swift */,
-				B9286F7E2A17B825005EB395 /* InputObjects */,
-				B9286F802A17B825005EB395 /* SchemaMetadata.graphql.swift */,
-				B9286F812A17B825005EB395 /* Interfaces */,
+				B92C0CB52A1E584A002B3A46 /* CustomScalars */,
+				B92C0CB72A1E584A002B3A46 /* Objects */,
+				B92C0CBF2A1E584A002B3A46 /* SchemaConfiguration.swift */,
+				B92C0CC02A1E584A002B3A46 /* InputObjects */,
+				B92C0CC22A1E584A002B3A46 /* SchemaMetadata.graphql.swift */,
+				B92C0CC32A1E584A002B3A46 /* Interfaces */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		B9286F712A17B825005EB395 /* CustomScalars */ = {
+		B92C0CB52A1E584A002B3A46 /* CustomScalars */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F722A17B825005EB395 /* Date.swift */,
+				B92C0CB62A1E584A002B3A46 /* Date.swift */,
 			);
 			path = CustomScalars;
 			sourceTree = "<group>";
 		};
-		B9286F732A17B825005EB395 /* Objects */ = {
+		B92C0CB72A1E584A002B3A46 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F742A17B825005EB395 /* SurveyTriggerCustomEvent.graphql.swift */,
-				B9286F752A17B825005EB395 /* SurveyTriggerURL.graphql.swift */,
-				B9286F762A17B825005EB395 /* SurveyTriggerDelay.graphql.swift */,
-				B9286F772A17B825005EB395 /* SurveyTriggerClick.graphql.swift */,
-				B9286F782A17B825005EB395 /* Query.graphql.swift */,
-				B9286F792A17B825005EB395 /* SurveyTriggerCustomEventCondition.graphql.swift */,
-				B9286F7A2A17B825005EB395 /* SurveyTriggerURLScroll.graphql.swift */,
-				B9286F7B2A17B825005EB395 /* SurveyTriggerScreen.graphql.swift */,
-				B9286F7C2A17B825005EB395 /* SurveyTriggerURLCondition.graphql.swift */,
+				B92C0CB82A1E584A002B3A46 /* SurveyTriggerCustomEvent.graphql.swift */,
+				B92C0CB92A1E584A002B3A46 /* SurveyTriggerURL.graphql.swift */,
+				B92C0CBA2A1E584A002B3A46 /* SurveyTriggerDelay.graphql.swift */,
+				B92C0CBB2A1E584A002B3A46 /* SurveyTriggerClick.graphql.swift */,
+				B92C0CBC2A1E584A002B3A46 /* Query.graphql.swift */,
+				B92C0CBD2A1E584A002B3A46 /* SurveyTriggerScreen.graphql.swift */,
+				B92C0CBE2A1E584A002B3A46 /* SurveyTriggerURLCondition.graphql.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
 		};
-		B9286F7E2A17B825005EB395 /* InputObjects */ = {
+		B92C0CC02A1E584A002B3A46 /* InputObjects */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F7F2A17B825005EB395 /* SurveyReplied.graphql.swift */,
+				B92C0CC12A1E584A002B3A46 /* SurveyReplied.graphql.swift */,
 			);
 			path = InputObjects;
 			sourceTree = "<group>";
 		};
-		B9286F812A17B825005EB395 /* Interfaces */ = {
+		B92C0CC32A1E584A002B3A46 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				B9286F822A17B825005EB395 /* SurveyTrigger.graphql.swift */,
+				B92C0CC42A1E584A002B3A46 /* SurveyTrigger.graphql.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1019,32 +1013,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9286F8A2A17B826005EB395 /* SurveyTriggerClick.graphql.swift in Sources */,
+				B92C0CCE2A1E584A002B3A46 /* SurveyTriggerScreen.graphql.swift in Sources */,
 				B957ED0C2A11294A007AC8C6 /* ToldDateExtension.swift in Sources */,
-				B9286F852A17B825005EB395 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift in Sources */,
+				B92C0CCD2A1E584A002B3A46 /* Query.graphql.swift in Sources */,
+				B92C0CCC2A1E584A002B3A46 /* SurveyTriggerClick.graphql.swift in Sources */,
 				CA11612489714E695D67DC1878442367 /* Told.swift in Sources */,
+				B92C0CCB2A1E584A002B3A46 /* SurveyTriggerDelay.graphql.swift in Sources */,
+				B92C0CC72A1E584A002B3A46 /* GetEverySurveyAvailableToBeTriggeredQuery.graphql.swift in Sources */,
+				B92C0CD22A1E584A002B3A46 /* SchemaMetadata.graphql.swift in Sources */,
 				5ACE9094CFD9129CF784595A20FE7386 /* ToldMode.swift in Sources */,
-				B9286F8B2A17B826005EB395 /* Query.graphql.swift in Sources */,
-				B9286F932A17B826005EB395 /* SurveyTrigger.graphql.swift in Sources */,
 				543E88C81A6F1F80C9935108FD0F8012 /* ToldSDK-dummy.m in Sources */,
-				B9286F882A17B826005EB395 /* SurveyTriggerURL.graphql.swift in Sources */,
 				B97F2F8A2A081C1F0048BFEB /* ToldSurveyParams.swift in Sources */,
+				B92C0CD12A1E584A002B3A46 /* SurveyReplied.graphql.swift in Sources */,
 				B97F2F882A07C87E0048BFEB /* ToldStorage.swift in Sources */,
-				B9286F892A17B826005EB395 /* SurveyTriggerDelay.graphql.swift in Sources */,
+				B92C0CD02A1E584A002B3A46 /* SchemaConfiguration.swift in Sources */,
+				B92C0CCA2A1E584A002B3A46 /* SurveyTriggerURL.graphql.swift in Sources */,
+				B92C0CC52A1E584A002B3A46 /* ToldAPI.graphql.swift in Sources */,
+				B92C0CC62A1E584A002B3A46 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift in Sources */,
 				B92C0CAC2A1900E0002B3A46 /* ToldUtils.swift in Sources */,
-				B9286F862A17B825005EB395 /* Date.swift in Sources */,
-				B9286F842A17B825005EB395 /* CheckIfCanUseWidgetWithSurveyQuery.graphql.swift in Sources */,
-				B9286F832A17B825005EB395 /* ToldAPI.graphql.swift in Sources */,
-				B9286F8F2A17B826005EB395 /* SurveyTriggerURLCondition.graphql.swift in Sources */,
-				B9286F872A17B825005EB395 /* SurveyTriggerCustomEvent.graphql.swift in Sources */,
 				A16DE6A09820BE88F0BDB0D246BCBE02 /* ToldUIViewControllerExtension.swift in Sources */,
+				B92C0CC92A1E584A002B3A46 /* SurveyTriggerCustomEvent.graphql.swift in Sources */,
+				B92C0CC82A1E584A002B3A46 /* Date.swift in Sources */,
+				B92C0CD32A1E584A002B3A46 /* SurveyTrigger.graphql.swift in Sources */,
 				9E88F05A04ED3A12417C79A2D3E145A9 /* ToldWidget.swift in Sources */,
-				B9286F8E2A17B826005EB395 /* SurveyTriggerScreen.graphql.swift in Sources */,
-				B9286F8D2A17B826005EB395 /* SurveyTriggerURLScroll.graphql.swift in Sources */,
-				B9286F8C2A17B826005EB395 /* SurveyTriggerCustomEventCondition.graphql.swift in Sources */,
-				B9286F902A17B826005EB395 /* SchemaConfiguration.swift in Sources */,
-				B9286F922A17B826005EB395 /* SchemaMetadata.graphql.swift in Sources */,
-				B9286F912A17B826005EB395 /* SurveyReplied.graphql.swift in Sources */,
+				B92C0CCF2A1E584A002B3A46 /* SurveyTriggerURLCondition.graphql.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,4 +26,17 @@ internal class ToldUtils {
         
     }
     
+    static func convertToStringQueryParams(_ data: [String: String]) -> String {
+        var queryItems: [String] = []
+        
+        for (key, value) in data {
+            if let encodedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+               let encodedValue = value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                queryItems.append("\(encodedKey)=\(encodedValue)")
+            }
+        }
+        
+        return queryItems.joined(separator: "&")
+    }
+    
 }

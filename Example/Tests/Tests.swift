@@ -1,5 +1,4 @@
 import XCTest
-import ToldSDK
 
 class Tests: XCTestCase {
     

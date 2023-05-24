@@ -32,23 +32,29 @@ public class Told {
     private static var loadingTriggers = false
     private static var triggers: [ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered?] = []
     
-    private static var currentProjectId: String?
+    private static var currentProjectId: String = ""
     private static var defaultParams: [ToldSurveyParams] = []
+    
+    internal static var currentHiddenParams: [String: String] = [:]
+    internal static var currentHiddenParamsFormatted: String = ""
     
     // MARK: Public methods
             
-    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], language: String = "fr") {
+    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenParams: [String: String], language: String = "fr") {
                 
         if (loadingTriggers) { return }
         
         currentProjectId = projectId
+        currentHiddenParams = hiddenParams
+        currentHiddenParamsFormatted = ToldUtils.convertToStringQueryParams(hiddenParams)
+        defaultParams = params
                         
         loadingTriggers = true
         
-        defaultParams = params
-                        
-        apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, navigator: "safari", hostname: "http://localhost", language: .some(language), device: "phone", listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
-                                    
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+            
+        apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
+                                  
             guard let data = try? result.get().data else {
                 loadingTriggers = false
                 return
@@ -90,7 +96,8 @@ public class Told {
                 storage.setReplied(surveyId: surveyId)
             }
             widgets.append(widget)
-            vc.view.addSubview(widget.view)
+            vc.view.addSubview(widget)
+            widget.setup()
             
             storage.setSeen(surveyId: surveyId)
         }
@@ -138,6 +145,8 @@ public class Told {
         
         if (viewController == nil) { return }
         
+        if (screenName.contains("ToldWidget")) { return }
+        
         // Wait while init isn't finished
         waitForLoading {
                                     
@@ -156,7 +165,7 @@ public class Told {
                         
                         print("Triggered survey: \(screenTrigger.survey) on screen \(screenName)")
                                                 
-                        Told.start(id: screenTrigger.survey, projectId: currentProjectId ?? "", params: defaultParams, viewController: viewController!)
+                        Told.start(id: screenTrigger.survey, projectId: currentProjectId, params: defaultParams, viewController: viewController!)
                         
                     }
                                         

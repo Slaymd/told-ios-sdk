@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  ToldSDK
 //
 //  Created by Darius on 04/09/2023.
@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import ToldSDK
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("COUCOU")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -20,5 +22,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onTextChanged(_ sender: Any, forEvent event: UIEvent) {
+        
+        print(event)
+    }
 }
 

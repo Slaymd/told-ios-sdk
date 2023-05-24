@@ -73,9 +73,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         // Add style constraint
         self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)
         heightConstraint!.isActive = true
-        
-        let guide = self.layoutMarginsGuide
-         
+      
         NSLayoutConstraint.activate([
             webView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             webView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

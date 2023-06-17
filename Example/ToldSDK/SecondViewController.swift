@@ -12,7 +12,6 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("COUCOU ÉCRAN 2")
         // Do any additional setup after loading the view, typically from a nib.
     }
     

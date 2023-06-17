@@ -44,6 +44,8 @@ public class Told {
                 
         if (loadingTriggers) { return }
         
+        UIViewController.swizzleViewDidAppear()
+
         currentProjectId = projectId
         currentHiddenParams = hiddenParams
         currentHiddenParamsFormatted = ToldUtils.convertToStringQueryParams(hiddenParams)

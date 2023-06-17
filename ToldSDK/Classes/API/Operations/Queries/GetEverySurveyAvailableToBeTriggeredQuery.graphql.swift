@@ -9,11 +9,12 @@ public extension ToldAPI {
     public static let document: Apollo.DocumentType = .notPersisted(
       definition: .init(
         #"""
-        query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) {
+        query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $mobileApp: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) {
           getEverySurveyAvailableToBeTriggered(
             folderID: $folderID
             type: $type
             os: $os
+            mobileApp: $mobileApp
             language: $language
             version: $version
             listReplied: $listReplied
@@ -46,6 +47,7 @@ public extension ToldAPI {
     public var folderID: ID
     public var type: String
     public var os: GraphQLNullable<String>
+    public var mobileApp: GraphQLNullable<String>
     public var language: GraphQLNullable<String>
     public var version: GraphQLNullable<String>
     public var listReplied: GraphQLNullable<[SurveyReplied?]>
@@ -55,6 +57,7 @@ public extension ToldAPI {
       folderID: ID,
       type: String,
       os: GraphQLNullable<String>,
+      mobileApp: GraphQLNullable<String>,
       language: GraphQLNullable<String>,
       version: GraphQLNullable<String>,
       listReplied: GraphQLNullable<[SurveyReplied?]>,
@@ -63,6 +66,7 @@ public extension ToldAPI {
       self.folderID = folderID
       self.type = type
       self.os = os
+      self.mobileApp = mobileApp
       self.language = language
       self.version = version
       self.listReplied = listReplied
@@ -73,6 +77,7 @@ public extension ToldAPI {
       "folderID": folderID,
       "type": type,
       "os": os,
+      "mobileApp": mobileApp,
       "language": language,
       "version": version,
       "listReplied": listReplied,
@@ -89,6 +94,7 @@ public extension ToldAPI {
           "folderID": .variable("folderID"),
           "type": .variable("type"),
           "os": .variable("os"),
+          "mobileApp": .variable("mobileApp"),
           "language": .variable("language"),
           "version": .variable("version"),
           "listReplied": .variable("listReplied"),

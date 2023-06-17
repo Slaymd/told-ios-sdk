@@ -52,8 +52,9 @@ public class Told {
         loadingTriggers = true
         
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-            
-        apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
+        let bundleIdentifier = Bundle.main.bundleIdentifier
+
+        apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", mobileApp: bundleIdentifier ?? "", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
                                   
             guard let data = try? result.get().data else {
                 loadingTriggers = false

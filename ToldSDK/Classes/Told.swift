@@ -40,7 +40,7 @@ public class Told {
     
     // MARK: Public methods
             
-    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenParams: [String: String], language: String = "fr") {
+    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenParams: [String: String] = [:], language: String = "fr") {
                 
         if (loadingTriggers) { return }
         

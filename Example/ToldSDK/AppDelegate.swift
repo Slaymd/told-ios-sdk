@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Told.initSDK(projectId: "646cbf165b41cc001219ce1a")
+        Told.initSDK(projectId: "648cc1b1102e0d00133123cc")
         return true
     }
 

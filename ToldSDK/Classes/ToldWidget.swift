@@ -96,7 +96,6 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         let hiddenParamsQueryURL = hasHiddenParams ? "&\(Told.currentHiddenParamsFormatted)" : ""
         
         if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenParamsQueryURL)") {
-            print("load", url)
             webView.load(URLRequest(url: url))
         }
     }

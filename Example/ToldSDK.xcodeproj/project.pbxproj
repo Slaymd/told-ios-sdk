@@ -15,7 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		99BF7D91A777822BBD91F77A /* Pods_ToldSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F150539D79510FB1FB05A88 /* Pods_ToldSDK_Example.framework */; };
-		B92C0CD52A1E5DB2002B3A46 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CD42A1E5DB2002B3A46 /* SecondViewController.swift */; };
+		B92A1D492A3E059F006FCFBD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1D482A3E059F006FCFBD /* SecondViewController.swift */; };
+		B92C0CD52A1E5DB2002B3A46 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +47,8 @@
 		6F150539D79510FB1FB05A88 /* Pods_ToldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFA519B8402BD2AD6EA96D /* Pods-ToldSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToldSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ToldSDK_Tests/Pods-ToldSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2D98619EC346DD8CA05F8F0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		B92C0CD42A1E5DB2002B3A46 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		B92A1D482A3E059F006FCFBD /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToldSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-ToldSDK_Example/Pods-ToldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DA49C158DED80F9C455398FA /* Pods_ToldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -117,7 +119,8 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* HomeViewController.swift */,
-				B92C0CD42A1E5DB2002B3A46 /* SecondViewController.swift */,
+				B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */,
+				B92A1D482A3E059F006FCFBD /* SecondViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -215,7 +218,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = XA2Q39L35Z;
+						DevelopmentTeam = B3P87LQ9S9;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -338,7 +341,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B92C0CD52A1E5DB2002B3A46 /* SecondViewController.swift in Sources */,
+				B92A1D492A3E059F006FCFBD /* SecondViewController.swift in Sources */,
+				B92C0CD52A1E5DB2002B3A46 /* SettingsViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* HomeViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -486,12 +490,15 @@
 			baseConfigurationReference = BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XA2Q39L35Z;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.told.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -503,12 +510,15 @@
 			baseConfigurationReference = 2227722D3DCA1560806ADD83 /* Pods-ToldSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XA2Q39L35Z;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.told.app.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -531,7 +541,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.told.demoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -551,7 +561,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = club.told.demoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

@@ -1,6 +1,6 @@
-query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) {
+query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $mobileApp: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) {
 
-    getEverySurveyAvailableToBeTriggered(folderID: $folderID, type: $type, os: $os, language: $language, version: $version, listReplied: $listReplied, preview: $preview) {
+    getEverySurveyAvailableToBeTriggered(folderID: $folderID, type: $type, os: $os, mobileApp: $mobileApp, language: $language, version: $version, listReplied: $listReplied, preview: $preview) {
 
       id
       survey

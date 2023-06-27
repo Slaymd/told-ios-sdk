@@ -57,6 +57,11 @@ public class Told {
         let bundleIdentifier = Bundle.main.bundleIdentifier
 
         apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", mobileApp: bundleIdentifier ?? "", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
+                        
+            if let errors = try? result.get().errors {
+                print("Told SDK not loaded correctly :", errors?[0].message ?? "(unknown)")
+                return
+            }
                                   
             guard let data = try? result.get().data else {
                 loadingTriggers = false

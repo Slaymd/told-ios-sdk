@@ -15,8 +15,10 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		99BF7D91A777822BBD91F77A /* Pods_ToldSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F150539D79510FB1FB05A88 /* Pods_ToldSDK_Example.framework */; };
-		B92A1D492A3E059F006FCFBD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92A1D482A3E059F006FCFBD /* SecondViewController.swift */; };
 		B92C0CD52A1E5DB2002B3A46 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */; };
+		B93940682A649A7D00E4F65F /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93940672A649A7D00E4F65F /* BookingViewController.swift */; };
+		B939406A2A649A8E00E4F65F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93940692A649A8E00E4F65F /* CheckoutViewController.swift */; };
+		B939406C2A649AA700E4F65F /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +49,10 @@
 		6F150539D79510FB1FB05A88 /* Pods_ToldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DFA519B8402BD2AD6EA96D /* Pods-ToldSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToldSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ToldSDK_Tests/Pods-ToldSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2D98619EC346DD8CA05F8F0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		B92A1D482A3E059F006FCFBD /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B93940672A649A7D00E4F65F /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		B93940692A649A8E00E4F65F /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 		BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToldSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-ToldSDK_Example/Pods-ToldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DA49C158DED80F9C455398FA /* Pods_ToldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -120,7 +124,9 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* HomeViewController.swift */,
 				B92C0CD42A1E5DB2002B3A46 /* SettingsViewController.swift */,
-				B92A1D482A3E059F006FCFBD /* SecondViewController.swift */,
+				B93940672A649A7D00E4F65F /* BookingViewController.swift */,
+				B93940692A649A8E00E4F65F /* CheckoutViewController.swift */,
+				B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -341,9 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B92A1D492A3E059F006FCFBD /* SecondViewController.swift in Sources */,
 				B92C0CD52A1E5DB2002B3A46 /* SettingsViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* HomeViewController.swift in Sources */,
+				B93940682A649A7D00E4F65F /* BookingViewController.swift in Sources */,
+				B939406A2A649A8E00E4F65F /* CheckoutViewController.swift in Sources */,
+				B939406C2A649AA700E4F65F /* PaymentSuccessViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

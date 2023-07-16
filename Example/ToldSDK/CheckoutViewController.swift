@@ -1,14 +1,14 @@
 //
-//  HomeViewController.swift
-//  ToldSDK
+//  CheckoutViewController.swift
+//  ToldSDK_Example
 //
-//  Created by Darius on 04/09/2023.
-//  Copyright (c) 2023 Darius. All rights reserved.
+//  Created by Darius MARTIN on 16/07/2023.
+//  Copyright © 2023 CocoaPods. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class CheckoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,4 +20,3 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
-

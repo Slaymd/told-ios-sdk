@@ -66,6 +66,9 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         
+        webView.backgroundColor = .clear
+        webView.isOpaque = false
+        
         webView.alpha = 0.0
         self.addSubview(webView)
         self.bringSubview(toFront: webView)
@@ -92,10 +95,10 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     // MARK: Public methods
     
     public func loadWidget() {
-        let hasHiddenParams = Told.currentHiddenParamsFormatted.count > 0
-        let hiddenParamsQueryURL = hasHiddenParams ? "&\(Told.currentHiddenParamsFormatted)" : ""
+        let hasHiddenFields = Told.currentHiddenFieldsFormatted.count > 0
+        let hiddenFieldsQueryURL = hasHiddenFields ? "&\(Told.currentHiddenFieldsFormatted)" : ""
         
-        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenParamsQueryURL)") {
+        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
             webView.load(URLRequest(url: url))
         }
     }

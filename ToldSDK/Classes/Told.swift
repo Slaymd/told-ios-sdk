@@ -35,20 +35,20 @@ public class Told {
     private static var currentProjectId: String = ""
     private static var defaultParams: [ToldSurveyParams] = []
     
-    internal static var currentHiddenParams: [String: String] = [:]
-    internal static var currentHiddenParamsFormatted: String = ""
+    internal static var currentHiddenFields: [String: String] = [:]
+    internal static var currentHiddenFieldsFormatted: String = ""
     
     // MARK: Public methods
             
-    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenParams: [String: String] = [:], language: String = "fr") {
+    public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenFields: [String: String] = [:], language: String = "fr") {
                 
         if (loadingTriggers) { return }
         
         UIViewController.swizzleViewDidAppear()
 
         currentProjectId = projectId
-        currentHiddenParams = hiddenParams
-        currentHiddenParamsFormatted = ToldUtils.convertToStringQueryParams(hiddenParams)
+        currentHiddenFields = hiddenFields
+        currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
         defaultParams = params
                         
         loadingTriggers = true
@@ -57,10 +57,12 @@ public class Told {
         let bundleIdentifier = Bundle.main.bundleIdentifier
 
         apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", mobileApp: bundleIdentifier ?? "", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
-                        
+                                    
             if let errors = try? result.get().errors {
-                print("Told SDK not loaded correctly :", errors?[0].message ?? "(unknown)")
-                return
+                if (errors?.count ?? 0 > 0) {
+                    print("Told SDK not loaded correctly :", errors?[0].message ?? "(unknown)")
+                    return
+                }
             }
                                   
             guard let data = try? result.get().data else {
@@ -77,6 +79,16 @@ public class Told {
             return
         }
                 
+    }
+    
+    public static func addHiddenFields(hiddenFields: [String: String], setData: Bool = true) {
+        if (setData) {
+            currentHiddenFields = hiddenFields
+            currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
+            return
+        }
+        
+        currentHiddenFields += hiddenFields
     }
     
     public static func start(id surveyId: String, projectId: String) {

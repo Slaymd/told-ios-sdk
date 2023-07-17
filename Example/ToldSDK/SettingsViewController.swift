@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ToldSDK
+import Told
 
 class SettingsViewController: UIViewController, UITextFieldDelegate {
     

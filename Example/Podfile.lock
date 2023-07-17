@@ -2,24 +2,24 @@ PODS:
   - Apollo (1.1.3):
     - Apollo/Core (= 1.1.3)
   - Apollo/Core (1.1.3)
-  - ToldSDK (0.1.0):
+  - Told (1.0.3):
     - Apollo (~> 1.1.3)
 
 DEPENDENCIES:
-  - ToldSDK (from `../`)
+  - Told (from `../`)
 
 SPEC REPOS:
   trunk:
     - Apollo
 
 EXTERNAL SOURCES:
-  ToldSDK:
+  Told:
     :path: "../"
 
 SPEC CHECKSUMS:
   Apollo: 557761ba1b5a0f8dbeaaa90d9ef8e6ee998fdc30
-  ToldSDK: 8ab644aeef57b1bc4c28368a5c06f188d78ce2c2
+  Told: 532b5a245c49a2ca347b92e09ac276606e0d497f
 
-PODFILE CHECKSUM: 0192f5bc7f0c9a88ffb79cd47bc4b9209477d681
+PODFILE CHECKSUM: 6fecf612fac5e8b6eb51f6c940356dd90d7f4b24
 
 COCOAPODS: 1.12.1

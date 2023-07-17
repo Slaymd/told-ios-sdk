@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ToldSDK
+import Told
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -133,6 +133,14 @@ public class Told {
         }
         
         apiClient.fetch(query: ToldAPI.CheckIfCanUseWidgetWithSurveyQuery(surveyID: surveyId, hostname: "http://localhost", preview: .some(params.contains(.preview)))) { result in
+            
+            if let errors = try? result.get().errors {
+                if (errors?.count ?? 0 > 0) {
+                    print("Told SDK Error while checking if can use widget :", errors?[0].message ?? "(unknown)")
+                    return
+                }
+            }
+            
             guard let data = try? result.get().data else {
                 completion(false)
                 return

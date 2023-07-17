@@ -54,6 +54,29 @@ ToldSDK is available under the MIT license. See the LICENSE file for more info.
 
 ## Maintainers
 
+### Compile app
+
+Please be sure to have the last MacOS and Xcode versions.
+
+Open terminal and install cocoapods package ./Example folder : `pod install`
+
+Open the xworkspace file in the ./Example folder with Xcode : `open ToldSDK.xcworkspace`
+
+In the top bar, select a device and click on the Run arrow icon to start an emulator. More info here : https://developer.apple.com/documentation/xcode/building-and-running-an-app
+
+### Change local/prod/preprod API
+
+On the top of the root SDK file you can change the API version used : `open ./ToldSDK/Classes/Told.swift` :
+
+```swift
+let SERVER_API_URL = "https://api.told.club"
+let WIDGET_URL = "https://widget.told.club"
+```
+
+If you are testing in local, be sure to set your local IP adress and not localhost.
+
+### Publish new version
+
 Follow this steps to publish a new release :
 
 * Increment version in Told.podspec

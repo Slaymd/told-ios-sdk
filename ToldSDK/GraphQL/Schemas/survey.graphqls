@@ -99,6 +99,6 @@ scalar Date
   }
 
   extend type Query {
-    checkIfCanUseWidgetWithSurvey(surveyID: ID!, hostname: String!, preview: Boolean): Boolean
+    checkIfCanUseWidgetWithSurvey(surveyID: ID!, preview: Boolean, os: String, mobileApp: String): Boolean
     getEverySurveyAvailableToBeTriggered(folderID: ID!, type: String! navigator: String, language: String, country: String, device: String, listReplied: [SurveyReplied], preview: Boolean, version: String, os: String, mobileApp: String): [SurveyTrigger]
   }

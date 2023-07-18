@@ -9,34 +9,39 @@ public extension ToldAPI {
     public static let document: Apollo.DocumentType = .notPersisted(
       definition: .init(
         #"""
-        query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $hostname: String!, $preview: Boolean) {
+        query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $preview: Boolean, $os: String!, $mobileApp: String!) {
           checkIfCanUseWidgetWithSurvey(
             surveyID: $surveyID
-            hostname: $hostname
             preview: $preview
+            os: $os
+            mobileApp: $mobileApp
           )
         }
         """#
       ))
 
     public var surveyID: ID
-    public var hostname: String
     public var preview: GraphQLNullable<Bool>
+    public var os: String
+    public var mobileApp: String
 
     public init(
       surveyID: ID,
-      hostname: String,
-      preview: GraphQLNullable<Bool>
+      preview: GraphQLNullable<Bool>,
+      os: String,
+      mobileApp: String
     ) {
       self.surveyID = surveyID
-      self.hostname = hostname
       self.preview = preview
+      self.os = os
+      self.mobileApp = mobileApp
     }
 
     public var __variables: Variables? { [
       "surveyID": surveyID,
-      "hostname": hostname,
-      "preview": preview
+      "preview": preview,
+      "os": os,
+      "mobileApp": mobileApp
     ] }
 
     public struct Data: ToldAPI.SelectionSet {
@@ -47,8 +52,9 @@ public extension ToldAPI {
       public static var __selections: [Apollo.Selection] { [
         .field("checkIfCanUseWidgetWithSurvey", Bool?.self, arguments: [
           "surveyID": .variable("surveyID"),
-          "hostname": .variable("hostname"),
-          "preview": .variable("preview")
+          "preview": .variable("preview"),
+          "os": .variable("os"),
+          "mobileApp": .variable("mobileApp")
         ]),
       ] }
 

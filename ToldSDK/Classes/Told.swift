@@ -132,7 +132,9 @@ public class Told {
             return
         }
         
-        apiClient.fetch(query: ToldAPI.CheckIfCanUseWidgetWithSurveyQuery(surveyID: surveyId, hostname: "http://localhost", preview: .some(params.contains(.preview)))) { result in
+        let bundleIdentifier = Bundle.main.bundleIdentifier
+   
+        apiClient.fetch(query: ToldAPI.CheckIfCanUseWidgetWithSurveyQuery(surveyID: surveyId, preview: .some(params.contains(.preview)), os: "IOS", mobileApp: bundleIdentifier ?? "")) { result in
             
             if let errors = try? result.get().errors {
                 if (errors?.count ?? 0 > 0) {

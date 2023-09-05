@@ -37,6 +37,17 @@
                                     <segue destination="bTV-mh-oJe" kind="show" id="0BX-LE-eJk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j78-zd-YMO">
+                                <rect key="frame" x="20" y="37" width="120" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="mpN-fp-S0G"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Settings"/>
+                                <connections>
+                                    <segue destination="kTE-zQ-mVQ" kind="showDetail" id="fGz-cD-94w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -49,6 +60,8 @@
                             <constraint firstItem="Vn2-6j-7ia" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="TB0-zV-JBY"/>
                             <constraint firstItem="Vn2-6j-7ia" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="ldY-9M-pC5"/>
                             <constraint firstItem="EIJ-2b-gQs" firstAttribute="leading" secondItem="rbB-Yc-lf3" secondAttribute="leading" id="mEM-3K-Xnj"/>
+                            <constraint firstItem="j78-zd-YMO" firstAttribute="top" secondItem="rbB-Yc-lf3" secondAttribute="bottom" constant="8" symbolic="YES" id="tOZ-lK-Cvi"/>
+                            <constraint firstItem="j78-zd-YMO" firstAttribute="leading" secondItem="Vn2-6j-7ia" secondAttribute="leading" constant="20" id="vcE-oa-kgD"/>
                             <constraint firstItem="EIJ-2b-gQs" firstAttribute="trailing" secondItem="rbB-Yc-lf3" secondAttribute="trailing" id="viX-Vs-T1C"/>
                             <constraint firstItem="rbB-Yc-lf3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yPh-Xb-sui"/>
                         </constraints>
@@ -62,7 +75,7 @@
         <!--Settings View Controller-->
         <scene sceneID="clw-nx-u1R">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="kTE-zQ-mVQ" customClass="SettingsViewController" customModule="ToldSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" modalPresentationStyle="fullScreen" id="kTE-zQ-mVQ" customClass="SettingsViewController" customModule="ToldSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6I7-I4-PPh"/>
                         <viewControllerLayoutGuide type="bottom" id="qnL-F9-Yeb"/>
@@ -74,46 +87,67 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings Background" translatesAutoresizingMaskIntoConstraints="NO" id="Xo8-DC-TY3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Told Project ID" adjustsFontForContentSizeCategory="YES" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zWu-am-UKN">
-                                <rect key="frame" x="62.5" y="241.5" width="250" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="Ggc-LK-zB4"/>
-                                    <constraint firstAttribute="width" constant="250" id="V3G-mg-qmN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xk5-sX-Mef">
-                                <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Y7x-71-IaL"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" "/>
                                 <connections>
                                     <segue destination="vXZ-lx-hvc" kind="showDetail" id="2qp-35-hLB"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NwB-iw-SbG">
+                                <rect key="frame" x="20" y="176" width="335" height="133"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Told Project ID" adjustsFontForContentSizeCategory="YES" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zWu-am-UKN">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoz-AE-CZb">
+                                        <rect key="frame" x="0.0" y="49" width="335" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Init SDK"/>
+                                        <connections>
+                                            <action selector="onInitClick:" destination="kTE-zQ-mVQ" eventType="touchUpInside" id="ZJo-na-RaM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WPC-H9-aag">
+                                        <rect key="frame" x="0.0" y="98.5" width="335" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Advanced Settings"/>
+                                        <connections>
+                                            <segue destination="5Qk-Bo-9fZ" kind="show" id="gy2-TH-KiK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xk5-sX-Mef" firstAttribute="width" secondItem="r8k-T6-dLv" secondAttribute="width" id="2dP-hX-pca"/>
                             <constraint firstItem="Xo8-DC-TY3" firstAttribute="height" secondItem="r8k-T6-dLv" secondAttribute="height" id="5OD-ct-s6C"/>
-                            <constraint firstItem="xk5-sX-Mef" firstAttribute="height" secondItem="r8k-T6-dLv" secondAttribute="height" multiplier="0.5" id="9Ru-fC-Jdh"/>
-                            <constraint firstItem="zWu-am-UKN" firstAttribute="centerY" secondItem="r8k-T6-dLv" secondAttribute="centerY" constant="-75" id="DGu-Pf-uSD"/>
+                            <constraint firstItem="NwB-iw-SbG" firstAttribute="trailing" secondItem="Xo8-DC-TY3" secondAttribute="trailing" constant="-20" id="9ab-5i-4Me"/>
+                            <constraint firstItem="NwB-iw-SbG" firstAttribute="leading" secondItem="Xo8-DC-TY3" secondAttribute="leading" constant="20" id="K09-P2-UG5"/>
                             <constraint firstItem="Xo8-DC-TY3" firstAttribute="centerX" secondItem="r8k-T6-dLv" secondAttribute="centerX" id="KoE-cE-vKr"/>
-                            <constraint firstItem="zWu-am-UKN" firstAttribute="centerX" secondItem="Xo8-DC-TY3" secondAttribute="centerX" id="TIF-E8-3FN"/>
                             <constraint firstItem="Xo8-DC-TY3" firstAttribute="centerY" secondItem="r8k-T6-dLv" secondAttribute="centerY" id="c1w-Rm-mNw"/>
                             <constraint firstItem="Xo8-DC-TY3" firstAttribute="width" secondItem="r8k-T6-dLv" secondAttribute="width" id="cWG-pQ-xzd"/>
                             <constraint firstItem="xk5-sX-Mef" firstAttribute="centerX" secondItem="r8k-T6-dLv" secondAttribute="centerX" id="nRN-MI-gwf"/>
+                            <constraint firstItem="NwB-iw-SbG" firstAttribute="top" secondItem="6I7-I4-PPh" secondAttribute="bottom" constant="176" id="qGR-3d-JWv"/>
                             <constraint firstItem="xk5-sX-Mef" firstAttribute="bottom" secondItem="Xo8-DC-TY3" secondAttribute="bottom" id="vpD-51-VkN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ab1-50-5HG"/>
                     <connections>
                         <outlet property="ui_projectIdTextField" destination="zWu-am-UKN" id="DnT-97-X7I"/>
+                        <outlet property="ui_startExperienceButton" destination="xk5-sX-Mef" id="dFT-3W-T7H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1W-GK-ktd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-999" y="-1"/>
+            <point key="canvasLocation" x="-999.20000000000005" y="-1.3493253373313345"/>
         </scene>
         <!--Booking View Controller-->
         <scene sceneID="dZN-tA-5Jg">
@@ -273,6 +307,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTG-54-aix" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3073" y="-1"/>
+        </scene>
+        <!--AdvancedSettingsViewController-->
+        <scene sceneID="rqZ-hm-OOT">
+            <objects>
+                <viewController restorationIdentifier="AdvancedSettingsViewController" storyboardIdentifier="AdvancedSettingsViewController" id="5Qk-Bo-9fZ" userLabel="AdvancedSettingsViewController" customClass="AdvancedSettingsViewController" customModule="ToldSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jbr-dh-s97"/>
+                        <viewControllerLayoutGuide type="bottom" id="lJ0-wN-Zxx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vl0-n5-Zds">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWo-ij-BK2">
+                                <rect key="frame" x="116" y="16" width="143" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1pQ-5X-Veh">
+                                <rect key="frame" x="20" y="55" width="335" height="343.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name=Jon;age=20" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="mHE-Ea-hRD">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZH-ye-Z15">
+                                        <rect key="frame" x="0.0" y="44" width="335" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Apply HiddenFields"/>
+                                        <connections>
+                                            <action selector="onApplyHiddenFieldsClick:" destination="5Qk-Bo-9fZ" eventType="touchUpInside" id="EeY-ZF-BM2"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="h0c-LY-feq">
+                                        <rect key="frame" x="0.0" y="88.5" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Survey ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="bEl-ba-csz">
+                                        <rect key="frame" x="0.0" y="132.5" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wu-tn-WXn">
+                                        <rect key="frame" x="0.0" y="176.5" width="335" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Start Survey"/>
+                                        <connections>
+                                            <action selector="onStartSurveyClick:" destination="5Qk-Bo-9fZ" eventType="touchUpInside" id="37n-iQ-lCj"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="API root link (https://api.told.club)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaz-u9-IuL">
+                                        <rect key="frame" x="0.0" y="221" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Widget root link (https://widget.told.club)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OIr-51-qYb">
+                                        <rect key="frame" x="0.0" y="265" width="335" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbk-cF-VmM">
+                                        <rect key="frame" x="0.0" y="309" width="335" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Apply new server urls"/>
+                                        <connections>
+                                            <action selector="onApplyServerURLsClick:" destination="5Qk-Bo-9fZ" eventType="touchUpInside" id="du6-Ce-k9S"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NWo-ij-BK2" firstAttribute="centerX" secondItem="Vl0-n5-Zds" secondAttribute="centerX" id="GC7-3a-uyI"/>
+                            <constraint firstItem="1pQ-5X-Veh" firstAttribute="leading" secondItem="Vl0-n5-Zds" secondAttribute="leading" constant="20" symbolic="YES" id="Ms1-il-PqA"/>
+                            <constraint firstItem="1pQ-5X-Veh" firstAttribute="top" secondItem="NWo-ij-BK2" secondAttribute="bottom" constant="18.5" id="ZhF-Ub-pPl"/>
+                            <constraint firstAttribute="trailing" secondItem="1pQ-5X-Veh" secondAttribute="trailing" constant="20" symbolic="YES" id="sXS-yt-1Bp"/>
+                            <constraint firstItem="NWo-ij-BK2" firstAttribute="top" secondItem="Jbr-dh-s97" secondAttribute="bottom" constant="16" id="yyC-eW-ilq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8b0-55-dGU"/>
+                    <connections>
+                        <outlet property="ui_apiRoot" destination="eaz-u9-IuL" id="hut-nu-yzg"/>
+                        <outlet property="ui_hiddenFields" destination="mHE-Ea-hRD" id="jAZ-bC-l6p"/>
+                        <outlet property="ui_projectId" destination="h0c-LY-feq" id="4c9-uk-lpk"/>
+                        <outlet property="ui_surveyId" destination="bEl-ba-csz" id="eW0-nT-1Oh"/>
+                        <outlet property="ui_widgetRoot" destination="OIr-51-qYb" id="aXb-u9-EIX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="My5-fX-E5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-999.20000000000005" y="-840.62968515742136"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

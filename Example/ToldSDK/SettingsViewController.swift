@@ -12,12 +12,21 @@ import Told
 class SettingsViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var ui_projectIdTextField: UITextField!
+    @IBOutlet weak var ui_startExperienceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        ui_projectIdTextField.delegate = self
-        ui_projectIdTextField.returnKeyType = .done
+        if let savedDefaultProjectId = UserDefaults.standard.string(forKey: "defaultProjectId") {
+            ui_projectIdTextField.text = savedDefaultProjectId
+        }
+        
+        if let savedApiRoot = UserDefaults.standard.string(forKey: "apiRoot") {
+            if let savedWidgetRoot = UserDefaults.standard.string(forKey: "widgetRoot") {
+                Told.setServerAPI(apiRootUrl: savedApiRoot, widgetRootUrl: savedWidgetRoot)
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,10 +34,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        Told.initSDK(projectId: ui_projectIdTextField.text ?? "")
-        textField.resignFirstResponder()
-        return true
+    @IBAction func onInitClick(_ sender: Any) {
+        
+        UserDefaults.standard.set(ui_projectIdTextField.text ?? "", forKey: "defaultProjectId")
+        Told.initSDK(projectId: ui_projectIdTextField.text ?? "", params: [.seeItOnlyOnce])
+        let alertController = UIAlertController(title: "Succesfully initialized '\(ui_projectIdTextField.text ?? "")'", message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
+        })
+        self.present(alertController, animated: true)
     }
 
 }

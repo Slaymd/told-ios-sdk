@@ -98,7 +98,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         let hasHiddenFields = Told.currentHiddenFieldsFormatted.count > 0
         let hiddenFieldsQueryURL = hasHiddenFields ? "&\(Told.currentHiddenFieldsFormatted)" : ""
         
-        if let url = URL(string: "\(WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
+        if let url = URL(string: "\(Told.WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
             webView.load(URLRequest(url: url))
         }
     }

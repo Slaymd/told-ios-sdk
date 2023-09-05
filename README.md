@@ -66,7 +66,7 @@ In the top bar, select a device and click on the Run arrow icon to start an emul
 
 ### Change local/prod/preprod API
 
-On the top of the root SDK file you can change the API version used : `open ./ToldSDK/Classes/Told.swift` :
+In the root SDK file you can change the API version used : `open ./ToldSDK/Classes/Told.swift` :
 
 ```swift
 let SERVER_API_URL = "https://api.told.club"

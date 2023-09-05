@@ -19,6 +19,7 @@
 		B93940682A649A7D00E4F65F /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93940672A649A7D00E4F65F /* BookingViewController.swift */; };
 		B939406A2A649A8E00E4F65F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93940692A649A8E00E4F65F /* CheckoutViewController.swift */; };
 		B939406C2A649AA700E4F65F /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */; };
+		B96A00252AA791F30028C269 /* AdvancedSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A00242AA791F30028C269 /* AdvancedSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B93940672A649A7D00E4F65F /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		B93940692A649A8E00E4F65F /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
+		B96A00242AA791F30028C269 /* AdvancedSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsViewController.swift; sourceTree = "<group>"; };
 		BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToldSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-ToldSDK_Example/Pods-ToldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DA49C158DED80F9C455398FA /* Pods_ToldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				B93940672A649A7D00E4F65F /* BookingViewController.swift */,
 				B93940692A649A8E00E4F65F /* CheckoutViewController.swift */,
 				B939406B2A649AA700E4F65F /* PaymentSuccessViewController.swift */,
+				B96A00242AA791F30028C269 /* AdvancedSettingsViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -351,6 +354,7 @@
 				607FACD81AFB9204008FA782 /* HomeViewController.swift in Sources */,
 				B93940682A649A7D00E4F65F /* BookingViewController.swift in Sources */,
 				B939406A2A649A8E00E4F65F /* CheckoutViewController.swift in Sources */,
+				B96A00252AA791F30028C269 /* AdvancedSettingsViewController.swift in Sources */,
 				B939406C2A649AA700E4F65F /* PaymentSuccessViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -498,7 +502,7 @@
 			baseConfigurationReference = BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";
@@ -518,7 +522,7 @@
 			baseConfigurationReference = 2227722D3DCA1560806ADD83 /* Pods-ToldSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";

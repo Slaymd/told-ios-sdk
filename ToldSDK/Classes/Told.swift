@@ -9,12 +9,15 @@ import Apollo
 
 //let SERVER_API_URL = "http://192.168.1.55:7700"
 //let SERVER_API_URL = "https://preprodinternapi.evoltapp.com"
-let SERVER_API_URL = "https://api.told.club"
+//let SERVER_API_URL = "https://api.told.club"
 //let WIDGET_URL = "http://192.168.1.55:3001"
 //let WIDGET_URL = "https://preprodwidget.evoltapp.com"
-let WIDGET_URL = "https://widget.told.club"
+//let WIDGET_URL = "https://widget.told.club"
 
 public class Told {
+    
+    internal static var SERVER_API_URL = "https://api.told.club"
+    internal static var WIDGET_URL = "https://widget.told.club"
     
     internal static var currentViewController: UIViewController?
     internal static var currentViewControllerName: String? {
@@ -23,7 +26,7 @@ public class Told {
         }
     }
         
-    private static let apiClient = ApolloClient(url: URL(string: "\(SERVER_API_URL)/graphql")!)
+    private static var apiClient = ApolloClient(url: URL(string: "\(SERVER_API_URL)/graphql")!)
     
     private static let storage = ToldStorage()
     
@@ -79,6 +82,12 @@ public class Told {
             return
         }
                 
+    }
+    
+    public static func setServerAPI(apiRootUrl: String, widgetRootUrl: String) {
+        SERVER_API_URL = apiRootUrl
+        WIDGET_URL = widgetRootUrl
+        apiClient = ApolloClient(url: URL(string: "\(SERVER_API_URL)/graphql")!)
     }
     
     public static func addHiddenFields(hiddenFields: [String: String], setData: Bool = true) {

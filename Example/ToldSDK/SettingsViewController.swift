@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onInitClick(_ sender: Any) {
         
         UserDefaults.standard.set(ui_projectIdTextField.text ?? "", forKey: "defaultProjectId")
-        Told.initSDK(projectId: ui_projectIdTextField.text ?? "", params: [.seeItOnlyOnce])
+        Told.initSDK(projectId: ui_projectIdTextField.text ?? "", params: [])
         let alertController = UIAlertController(title: "Succesfully initialized '\(ui_projectIdTextField.text ?? "")'", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
         })

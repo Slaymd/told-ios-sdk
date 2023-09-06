@@ -20,5 +20,14 @@ query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: 
         }
       }
 
+      ... on SurveyTriggerCustomEvent {
+        eventName
+        conditions {
+          key
+          operator
+          value
+        }
+      }
+
     }
   }

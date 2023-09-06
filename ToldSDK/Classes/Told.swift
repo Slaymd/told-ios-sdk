@@ -100,6 +100,42 @@ public class Told {
         currentHiddenFields += hiddenFields
     }
     
+    public static func sendCustomEvent(eventName: String, eventProperties: [String: String]?) {
+        let eventTrigger = triggers.first { surveyTrigger in
+            guard let customTrigger = surveyTrigger?.asSurveyTriggerCustomEvent else {
+                return false
+            }
+            
+            if customTrigger.eventName != nil && customTrigger.eventName == eventName { return true }
+            return false
+        }
+                
+        guard let customEventTrigger = eventTrigger??.asSurveyTriggerCustomEvent else { return }
+                        
+        // If no conditions, start survey
+        if (customEventTrigger.conditions == nil || customEventTrigger.conditions!.isEmpty) {
+            Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
+        }
+                        
+        // Check conditions
+        for condition in customEventTrigger.conditions! {
+            if let eventProperty = eventProperties?.first(where: { (key: String, value: String) in
+                if (condition?.key == key) { return true }
+                return false
+            }) {
+                if (!ToldUtils.isCustomTriggerConditionTrue(condition: condition!, arg: eventProperty.value)) {
+                    // eventProperty value doesnt corresponds to the condition, so cancel survey trigger
+                    return
+                }
+            } else {
+                // No eventProperty corresponding to condition, so cancel survey trigger
+                return
+            }
+        }
+                
+        Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
+    }
+    
     public static func start(id surveyId: String, projectId: String) {
         start(id: surveyId, projectId: projectId, params: [])
     }
@@ -113,6 +149,13 @@ public class Told {
     }
     
     public static func start(id surveyId: String, projectId: String, params: [ToldSurveyParams], viewController vc: UIViewController) {
+        
+        for view in vc.view.subviews {
+            if (String(describing: view.classForCoder) == "ToldWidget") {
+                print("Cannot display survey \(surveyId) because a survey is already displayed.")
+                return
+            }
+        }
 
         checkIfCanUseThisSurvey(surveyId: surveyId, params: params) { canUse in
 

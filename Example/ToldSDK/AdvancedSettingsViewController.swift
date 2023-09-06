@@ -16,6 +16,8 @@ class AdvancedSettingsViewController: UIViewController {
     @IBOutlet weak var ui_surveyId: UITextField!
     @IBOutlet weak var ui_apiRoot: UITextField!
     @IBOutlet weak var ui_widgetRoot: UITextField!
+    @IBOutlet weak var ui_eventName: UITextField!
+    @IBOutlet weak var ui_eventProperties: UITextField!
     
     var defaultProjectId: String = ""
     
@@ -80,5 +82,12 @@ class AdvancedSettingsViewController: UIViewController {
         UserDefaults.standard.set(apiRoot, forKey: "apiRoot")
         UserDefaults.standard.set(widgetRoot, forKey: "widgetRoot")
         Told.setServerAPI(apiRootUrl: apiRoot, widgetRootUrl: widgetRoot)
+    }
+    
+    @IBAction func onSendCustomEventClick(_ sender: Any) {
+        let eventName = ui_eventName.text ?? ""
+        let eventProperties = parseHiddenFieldsString(ui_eventProperties.text ?? "")
+        
+        Told.sendCustomEvent(eventName: eventName, eventProperties: eventProperties)
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
 internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler {
     
@@ -194,6 +195,15 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     }
     
     // MARK: WKNavigationDelegate
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let urlStr = navigationAction.request.url?.absoluteString, navigationAction.navigationType == .linkActivated {
+            guard let url = URL(string: urlStr) else { return }
+            let svc = SFSafariViewController(url: url)
+            Told.currentViewController?.present(svc, animated: true)
+        }
+        decisionHandler(.allow)
+    }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // Intercepts logs for debug mode

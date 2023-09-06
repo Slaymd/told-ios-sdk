@@ -39,6 +39,15 @@ public extension ToldAPI {
                 value
               }
             }
+            ... on SurveyTriggerCustomEvent {
+              eventName
+              conditions {
+                __typename
+                key
+                operator
+                value
+              }
+            }
           }
         }
         """#
@@ -118,6 +127,7 @@ public extension ToldAPI {
           .field("survey", ToldAPI.ID.self),
           .field("kind", String?.self),
           .inlineFragment(AsSurveyTriggerScreen.self),
+          .inlineFragment(AsSurveyTriggerCustomEvent.self),
         ] }
 
         public var id: ToldAPI.ID { __data["id"] }
@@ -125,6 +135,7 @@ public extension ToldAPI {
         public var kind: String? { __data["kind"] }
 
         public var asSurveyTriggerScreen: AsSurveyTriggerScreen? { _asInlineFragment() }
+        public var asSurveyTriggerCustomEvent: AsSurveyTriggerCustomEvent? { _asInlineFragment() }
 
         /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen
         ///
@@ -186,6 +197,47 @@ public extension ToldAPI {
             public var variable: String { __data["variable"] }
             public var `operator`: String { __data["operator"] }
             public var value: String { __data["value"] }
+          }
+        }
+
+        /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent
+        ///
+        /// Parent Type: `SurveyTriggerCustomEvent`
+        public struct AsSurveyTriggerCustomEvent: ToldAPI.InlineFragment {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public typealias RootEntityType = GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered
+          public static var __parentType: Apollo.ParentType { ToldAPI.Objects.SurveyTriggerCustomEvent }
+          public static var __selections: [Apollo.Selection] { [
+            .field("eventName", String?.self),
+            .field("conditions", [Condition?]?.self),
+          ] }
+
+          public var eventName: String? { __data["eventName"] }
+          public var conditions: [Condition?]? { __data["conditions"] }
+          public var id: ToldAPI.ID { __data["id"] }
+          public var survey: ToldAPI.ID { __data["survey"] }
+          public var kind: String? { __data["kind"] }
+
+          /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent.Condition
+          ///
+          /// Parent Type: `SurveyTriggerCustomEventCondition`
+          public struct Condition: ToldAPI.SelectionSet {
+            public let __data: DataDict
+            public init(_dataDict: DataDict) { __data = _dataDict }
+
+            public static var __parentType: Apollo.ParentType { ToldAPI.Objects.SurveyTriggerCustomEventCondition }
+            public static var __selections: [Apollo.Selection] { [
+              .field("__typename", String.self),
+              .field("key", String?.self),
+              .field("operator", String?.self),
+              .field("value", String?.self),
+            ] }
+
+            public var key: String? { __data["key"] }
+            public var `operator`: String? { __data["operator"] }
+            public var value: String? { __data["value"] }
           }
         }
       }

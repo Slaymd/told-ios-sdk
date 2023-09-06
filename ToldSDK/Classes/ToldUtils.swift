@@ -26,6 +26,25 @@ internal class ToldUtils {
         
     }
     
+    static func isCustomTriggerConditionTrue(condition: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent.Condition?, arg: String) -> Bool {
+        
+        if condition == nil { return false }
+        
+        switch (condition!.operator) {
+        case "isEqualTo":
+            return condition!.value == arg
+        case "contain":
+            return arg.lowercased().contains(condition!.value?.lowercased() ?? "")
+        case "isNotEqualTo":
+            return condition!.value != arg
+        case "doesNotContain":
+            return !arg.lowercased().contains(condition!.value?.lowercased() ?? "")
+        default:
+            return false
+        }
+        
+    }
+    
     static func convertToStringQueryParams(_ data: [String: String]) -> String {
         var queryItems: [String] = []
         

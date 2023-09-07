@@ -145,7 +145,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
                 break
             }
 
-            UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: webView, duration: 0.7, options: .transitionCrossDissolve, animations: {
                 let frame = self.safeAreaLayoutGuide.layoutFrame
                 self.heightConstraint?.constant = frame.height * 0.9
             }, completion: nil)

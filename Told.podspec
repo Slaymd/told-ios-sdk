@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Told'
-  s.version          = '1.0.3'
+  s.version          = '1.0.6'
   s.summary          = 'Official Told iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/Slaymd/told-ios-sdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '12.4'
 
   s.source_files = 'ToldSDK/Classes/**/*'
   

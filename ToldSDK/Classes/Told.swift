@@ -165,7 +165,9 @@ public class Told {
             }
             
             let widget = ToldWidget(surveyId: surveyId, projectId: projectId, mode: params.contains(.preview) ? .preview : params.contains(.debug) ? .debug : .production) { replied in
-                storage.setReplied(surveyId: surveyId)
+                if (replied) {
+                    storage.setReplied(surveyId: surveyId)
+                }
             }
             widgets.append(widget)
             vc.view.addSubview(widget)
@@ -237,7 +239,7 @@ public class Told {
                 guard let screenTrigger = surveyTrigger?.asSurveyTriggerScreen else {
                     continue
                 }
-                
+                                
                 if ((screenTrigger.whenData?.seeItOnlyOnce ?? false) && storage.isSeen(surveyId: screenTrigger.survey)) { continue }
                 if ((screenTrigger.whenData?.replyOnlyOnce ?? false) && storage.isReplied(surveyId: screenTrigger.survey)) { continue }
 

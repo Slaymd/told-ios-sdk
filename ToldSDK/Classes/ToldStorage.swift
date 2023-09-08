@@ -38,6 +38,7 @@ internal class ToldStorage {
     }
     
     func setReplied(surveyId: String) {
+        print("Set replied \(surveyId)")
         // Already exist
         if let index = surveys.firstIndex(where: { $0.surveyId == surveyId }) {
             surveys[index].replied += 1
@@ -61,6 +62,7 @@ internal class ToldStorage {
     
     func isReplied(surveyId: String) -> Bool {
         if let surveyData = surveys.first(where: { $0.surveyId == surveyId }) {
+            print("\(surveyId) is replied")
             return surveyData.replied > 0
         }
         

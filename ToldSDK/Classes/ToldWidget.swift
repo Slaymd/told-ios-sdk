@@ -176,7 +176,6 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
             self.closeCallback(reply)
             break
         case "CLOSE":
-            self.closeCallback(false)
             close()
             break
         default:

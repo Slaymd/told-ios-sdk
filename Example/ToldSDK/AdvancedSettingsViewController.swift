@@ -9,9 +9,9 @@
 import UIKit
 import Told
 
-class AdvancedSettingsViewController: UIViewController {
+class AdvancedSettingsViewController: UIViewController, UITextFieldDelegate {
         
-    @IBOutlet var ui_hiddenFields: UITextField!
+    @IBOutlet weak var ui_hiddenFields: UITextField!
     @IBOutlet weak var ui_projectId: UITextField!
     @IBOutlet weak var ui_surveyId: UITextField!
     @IBOutlet weak var ui_apiRoot: UITextField!
@@ -24,6 +24,14 @@ class AdvancedSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        ui_hiddenFields.delegate = self
+        ui_projectId.delegate = self
+        ui_surveyId.delegate = self
+        ui_apiRoot.delegate = self
+        ui_widgetRoot.delegate = self
+        ui_eventName.delegate = self
+        ui_eventProperties.delegate = self
+        
         if let savedHiddenFields = UserDefaults.standard.string(forKey: "hiddenFields") {
             ui_hiddenFields.text = savedHiddenFields
         }
@@ -89,5 +97,12 @@ class AdvancedSettingsViewController: UIViewController {
         let eventProperties = parseHiddenFieldsString(ui_eventProperties.text ?? "")
         
         Told.sendCustomEvent(eventName: eventName, eventProperties: eventProperties)
+    }
+    
+    // MARK: Delegate functions
+    
+    func textFieldShouldReturn(_ field: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

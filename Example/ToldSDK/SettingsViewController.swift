@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ui_projectIdTextField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         if let savedDefaultProjectId = UserDefaults.standard.string(forKey: "defaultProjectId") {
             ui_projectIdTextField.text = savedDefaultProjectId
@@ -37,11 +38,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onInitClick(_ sender: Any) {
         
         UserDefaults.standard.set(ui_projectIdTextField.text ?? "", forKey: "defaultProjectId")
-        Told.initSDK(projectId: ui_projectIdTextField.text ?? "", params: [])
+        Told.initSDK(projectId: ui_projectIdTextField.text ?? "", params: [.debug])
         let alertController = UIAlertController(title: "Succesfully initialized '\(ui_projectIdTextField.text ?? "")'", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
         })
         self.present(alertController, animated: true)
+    }
+    
+    // MARK: Delegate functions
+    
+    func textFieldShouldReturn(_ field: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 
 }

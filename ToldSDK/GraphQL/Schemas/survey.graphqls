@@ -4,10 +4,16 @@ scalar Date
     _empty: String
   }
 
+  type whenData {
+    seeItOnlyOnce: Boolean
+    replyOnlyOnce: Boolean
+  }
+
   interface SurveyTrigger {
     id: ID!
     survey: ID!
     kind: String
+    whenData: whenData
   }
 
   type SurveyTriggerDelay {

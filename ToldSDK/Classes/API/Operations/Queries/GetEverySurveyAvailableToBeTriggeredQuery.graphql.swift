@@ -24,6 +24,11 @@ public extension ToldAPI {
             id
             survey
             kind
+            whenData {
+              __typename
+              seeItOnlyOnce
+              replyOnlyOnce
+            }
             ... on SurveyTriggerScreen {
               onAllScreen
               onLoadScreen
@@ -126,6 +131,7 @@ public extension ToldAPI {
           .field("id", ToldAPI.ID.self),
           .field("survey", ToldAPI.ID.self),
           .field("kind", String?.self),
+          .field("whenData", WhenData?.self),
           .inlineFragment(AsSurveyTriggerScreen.self),
           .inlineFragment(AsSurveyTriggerCustomEvent.self),
         ] }
@@ -133,9 +139,28 @@ public extension ToldAPI {
         public var id: ToldAPI.ID { __data["id"] }
         public var survey: ToldAPI.ID { __data["survey"] }
         public var kind: String? { __data["kind"] }
+        public var whenData: WhenData? { __data["whenData"] }
 
         public var asSurveyTriggerScreen: AsSurveyTriggerScreen? { _asInlineFragment() }
         public var asSurveyTriggerCustomEvent: AsSurveyTriggerCustomEvent? { _asInlineFragment() }
+
+        /// GetEverySurveyAvailableToBeTriggered.WhenData
+        ///
+        /// Parent Type: `WhenData`
+        public struct WhenData: ToldAPI.SelectionSet {
+          public let __data: DataDict
+          public init(_dataDict: DataDict) { __data = _dataDict }
+
+          public static var __parentType: Apollo.ParentType { ToldAPI.Objects.WhenData }
+          public static var __selections: [Apollo.Selection] { [
+            .field("__typename", String.self),
+            .field("seeItOnlyOnce", Bool?.self),
+            .field("replyOnlyOnce", Bool?.self),
+          ] }
+
+          public var seeItOnlyOnce: Bool? { __data["seeItOnlyOnce"] }
+          public var replyOnlyOnce: Bool? { __data["replyOnlyOnce"] }
+        }
 
         /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen
         ///
@@ -160,6 +185,7 @@ public extension ToldAPI {
           public var id: ToldAPI.ID { __data["id"] }
           public var survey: ToldAPI.ID { __data["survey"] }
           public var kind: String? { __data["kind"] }
+          public var whenData: WhenData? { __data["whenData"] }
 
           /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen.Delay
           ///
@@ -219,6 +245,7 @@ public extension ToldAPI {
           public var id: ToldAPI.ID { __data["id"] }
           public var survey: ToldAPI.ID { __data["survey"] }
           public var kind: String? { __data["kind"] }
+          public var whenData: WhenData? { __data["whenData"] }
 
           /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent.Condition
           ///

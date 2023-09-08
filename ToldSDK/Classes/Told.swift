@@ -179,7 +179,7 @@ public class Told {
     
     private static func checkIfCanUseThisSurvey(surveyId: String, params: [ToldSurveyParams], completion: @escaping (Bool) -> ()) {
         
-        if (params.contains(.seeItOnlyOnce) && storage.isReplied(surveyId: surveyId)) {
+        if (params.contains(.seeItOnlyOnce) && storage.isSeen(surveyId: surveyId)) {
             completion(false)
             return
         }
@@ -237,7 +237,10 @@ public class Told {
                 guard let screenTrigger = surveyTrigger?.asSurveyTriggerScreen else {
                     continue
                 }
-             
+                
+                if ((screenTrigger.whenData?.seeItOnlyOnce ?? false) && storage.isSeen(surveyId: screenTrigger.survey)) { continue }
+                if ((screenTrigger.whenData?.replyOnlyOnce ?? false) && storage.isReplied(surveyId: screenTrigger.survey)) { continue }
+
                 if screenTrigger.onAllScreen ?? false || ToldUtils.isTriggerConditionTrue(condition: screenTrigger.condition, arg: screenName) {
                     
                     let delayEnabled = screenTrigger.delay?.active ?? false

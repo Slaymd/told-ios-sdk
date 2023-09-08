@@ -36,6 +36,7 @@ public extension ToldAPI {
       case "SurveyTriggerScreen": return ToldAPI.Objects.SurveyTriggerScreen
       case "SurveyTriggerClick": return ToldAPI.Objects.SurveyTriggerClick
       case "SurveyTriggerCustomEvent": return ToldAPI.Objects.SurveyTriggerCustomEvent
+      case "whenData": return ToldAPI.Objects.WhenData
       case "SurveyTriggerDelay": return ToldAPI.Objects.SurveyTriggerDelay
       case "SurveyTriggerURLCondition": return ToldAPI.Objects.SurveyTriggerURLCondition
       case "SurveyTriggerCustomEventCondition": return ToldAPI.Objects.SurveyTriggerCustomEventCondition

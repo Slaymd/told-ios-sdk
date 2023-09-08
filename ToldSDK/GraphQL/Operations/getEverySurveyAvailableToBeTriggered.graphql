@@ -5,6 +5,11 @@ query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: 
       id
       survey
       kind
+
+      whenData {
+        seeItOnlyOnce
+        replyOnlyOnce
+      }
       
       ... on SurveyTriggerScreen {
         onAllScreen

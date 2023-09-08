@@ -21,6 +21,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     // UI variables
     private var webView: WKWebView!
     private var heightConstraint: NSLayoutConstraint?
+    private var superHeightConstraint: NSLayoutConstraint?
     
     // MARK: Init
     
@@ -38,18 +39,6 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     }
     
     public func setup() {
-        
-        if let superview = superview {
-            
-            translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                topAnchor.constraint(equalTo: superview.topAnchor),
-                leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-                trailingAnchor.constraint(equalTo: superview.trailingAnchor),
-                bottomAnchor.constraint(equalTo: superview.bottomAnchor),
-            ])
-        }
         
         let config = WKWebViewConfiguration()
         let userContentController = WKUserContentController()
@@ -77,6 +66,21 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         // Add style constraint
         self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)
         heightConstraint!.isActive = true
+        
+        self.superHeightConstraint = self.heightAnchor.constraint(equalToConstant: 220)
+        superHeightConstraint!.isActive = true
+        
+        if let superview = superview {
+            
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+                trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+                bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+                superHeightConstraint!
+            ])
+        }
       
         NSLayoutConstraint.activate([
             webView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -135,7 +139,15 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
             self.webView.evaluateJavaScript("window.postMessage({type: 'SAFE_AREA', value: '\(safeAreaBottomHeight)'}, '*');")
             
             self.heightConstraint?.constant = 220 + safeAreaBottomHeight
+            self.superHeightConstraint?.constant = 220 + safeAreaBottomHeight
             break
+        case "LAUNCH_CALENDAR":
+            guard let value = values["value"] as? Dictionary<String,Any> else { return }
+            guard let iframeUrl = value["iframeUrl"] as? String else { return }
+            
+            guard let url = URL(string: iframeUrl) else { return }
+            let svc = SFSafariViewController(url: url)
+            Told.currentViewController?.present(svc, animated: true)
         case "UPDATE_SIZE":
             guard let value = values["value"] as? String else {
                 return;
@@ -145,9 +157,15 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
                 break
             }
 
-            UIView.transition(with: webView, duration: 0.7, options: .transitionCrossDissolve, animations: {
-                let frame = self.safeAreaLayoutGuide.layoutFrame
-                self.heightConstraint?.constant = frame.height * 0.9
+            UIView.transition(with: webView, duration: 0.7, options: .curveEaseIn, animations: {
+                var screenHeight = CGFloat(500)
+                if #available(iOS 13.0, *) {
+                    screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
+                } else {
+                    screenHeight = UIScreen.main.bounds.height
+                }
+                self.heightConstraint?.constant = screenHeight * 0.9
+                self.superHeightConstraint?.constant = screenHeight * 0.9
             }, completion: nil)
 
             break

@@ -8,10 +8,10 @@
 import Apollo
 
 //let SERVER_API_URL = "http://192.168.1.55:7700"
-//let SERVER_API_URL = "https://preprodinternapi.evoltapp.com"
+//let SERVER_API_URL = "https://preprodapi.told.club"
 //let SERVER_API_URL = "https://api.told.club"
 //let WIDGET_URL = "http://192.168.1.55:3001"
-//let WIDGET_URL = "https://preprodwidget.evoltapp.com"
+//let WIDGET_URL = "https://preprodwidget.told.club"
 //let WIDGET_URL = "https://widget.told.club"
 
 public class Told {

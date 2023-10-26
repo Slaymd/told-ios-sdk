@@ -106,6 +106,8 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         if let url = URL(string: "\(Told.WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
             webView.load(URLRequest(url: url))
         }
+        
+        print(url)
     }
     
     public func close() {
@@ -149,25 +151,61 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
             let svc = SFSafariViewController(url: url)
             Told.currentViewController?.present(svc, animated: true)
         case "UPDATE_SIZE":
-            guard let value = values["value"] as? String else {
+//            guard let value = values["value"] as? String else {
+//                return;
+//            }
+//                        
+//            if (value != "openMobile") {
+//                break
+//            }
+//
+//            UIView.transition(with: webView, duration: 0.7, options: .curveEaseIn, animations: {
+//                var screenHeight = CGFloat(500)
+//                if #available(iOS 13.0, *) {
+//                    screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
+//                } else {
+//                    screenHeight = UIScreen.main.bounds.height
+//                }
+//                self.heightConstraint?.constant = screenHeight * 0.9
+//                self.superHeightConstraint?.constant = screenHeight * 0.9
+//            }, completion: nil)
+
+            break
+        case "HEIGHT_CHANGE":
+            guard let value = values["value"] as? Int else {
                 return;
             }
-                        
-            if (value != "openMobile") {
-                break
+            
+            var screenHeight = CGFloat(500)
+            if #available(iOS 13.0, *) {
+                screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
+            } else {
+                screenHeight = UIScreen.main.bounds.height
             }
-
-            UIView.transition(with: webView, duration: 0.7, options: .curveEaseIn, animations: {
-                var screenHeight = CGFloat(500)
-                if #available(iOS 13.0, *) {
-                    screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
-                } else {
-                    screenHeight = UIScreen.main.bounds.height
-                }
-                self.heightConstraint?.constant = screenHeight * 0.9
-                self.superHeightConstraint?.constant = screenHeight * 0.9
-            }, completion: nil)
-
+            let maxHeight = screenHeight * 0.9
+            let newWidgetHeight = value > Int(maxHeight) ? maxHeight : (CGFloat(value) + 34.0 + 20.0)
+            
+            self.heightConstraint?.constant = newWidgetHeight
+            self.superHeightConstraint?.constant = newWidgetHeight
+            
+            UIView.animate(withDuration: 0.7) {
+                self.webView.layoutIfNeeded()
+                self.superview?.layoutIfNeeded()
+            }
+            
+//            UIView.transition(with: webView, duration: 0.7, options: .curveEaseIn, animations: {
+//                var screenHeight = CGFloat(500)
+//                if #available(iOS 13.0, *) {
+//                    screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
+//                } else {
+//                    screenHeight = UIScreen.main.bounds.height
+//                }
+//                let maxHeight = screenHeight * 0.9
+//                let newWidgetHeight = value > Int(maxHeight) ? maxHeight : CGFloat(value)
+//                
+//                self.heightConstraint?.constant = newWidgetHeight
+//                self.superHeightConstraint?.constant = newWidgetHeight
+//            }, completion: nil)
             break
         case "ADD_COOKIE":
             guard let reply = values["reply"] as? Bool else {

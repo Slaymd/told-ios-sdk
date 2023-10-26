@@ -22,6 +22,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     private var webView: WKWebView!
     private var heightConstraint: NSLayoutConstraint?
     private var superHeightConstraint: NSLayoutConstraint?
+    private var widgetHeightValue: CGFloat = 500
     
     // MARK: Init
     
@@ -94,6 +95,9 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         
         webView.isHidden = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         loadWidget()
     }
     
@@ -106,11 +110,10 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         if let url = URL(string: "\(Told.WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
             webView.load(URLRequest(url: url))
         }
-        
-        print(url)
     }
     
     public func close() {
+        NotificationCenter.default.removeObserver(self)
         UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.webView.alpha = 0.0
         }) { _ in
@@ -176,36 +179,12 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
                 return;
             }
             
-            var screenHeight = CGFloat(500)
-            if #available(iOS 13.0, *) {
-                screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
-            } else {
-                screenHeight = UIScreen.main.bounds.height
-            }
+            let screenHeight = ToldUtils.getScreenHeight(widget: self)
             let maxHeight = screenHeight * 0.9
-            let newWidgetHeight = value > Int(maxHeight) ? maxHeight : (CGFloat(value) + 34.0 + 20.0)
+            let newWidgetHeight = value > Int(maxHeight) ? maxHeight : CGFloat(value)
+            self.widgetHeightValue = newWidgetHeight
             
-            self.heightConstraint?.constant = newWidgetHeight
-            self.superHeightConstraint?.constant = newWidgetHeight
-            
-            UIView.animate(withDuration: 0.7) {
-                self.webView.layoutIfNeeded()
-                self.superview?.layoutIfNeeded()
-            }
-            
-//            UIView.transition(with: webView, duration: 0.7, options: .curveEaseIn, animations: {
-//                var screenHeight = CGFloat(500)
-//                if #available(iOS 13.0, *) {
-//                    screenHeight = self.window?.windowScene?.screen.bounds.height ?? 500
-//                } else {
-//                    screenHeight = UIScreen.main.bounds.height
-//                }
-//                let maxHeight = screenHeight * 0.9
-//                let newWidgetHeight = value > Int(maxHeight) ? maxHeight : CGFloat(value)
-//                
-//                self.heightConstraint?.constant = newWidgetHeight
-//                self.superHeightConstraint?.constant = newWidgetHeight
-//            }, completion: nil)
+            updateWebviewHeight(height: newWidgetHeight)
             break
         case "ADD_COOKIE":
             guard let reply = values["reply"] as? Bool else {
@@ -219,6 +198,31 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         default:
             break
         }
+    }
+    
+    // MARK: Private methods
+    private func updateWebviewHeight(height: CGFloat) {
+        self.heightConstraint?.constant = height
+        self.superHeightConstraint?.constant = height
+        
+        UIView.animate(withDuration: 0.4) {
+            self.webView.layoutIfNeeded()
+            self.superview?.layoutIfNeeded()
+        }
+    }
+    
+    
+    // MARK: Keyboard listeners
+    
+    @objc func keyboardWillAppear() {
+        var screenHeight = ToldUtils.getScreenHeight(widget: self)
+        let maxHeight = screenHeight * 0.9
+        
+        updateWebviewHeight(height: maxHeight)
+    }
+
+    @objc func keyboardWillDisappear() {
+        updateWebviewHeight(height: widgetHeightValue)
     }
     
     // MARK: WKScriptMessageHandler

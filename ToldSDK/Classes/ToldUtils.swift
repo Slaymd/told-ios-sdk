@@ -58,4 +58,14 @@ internal class ToldUtils {
         return queryItems.joined(separator: "&")
     }
     
+    static func getScreenHeight(widget: ToldWidget) -> CGFloat {
+        var screenHeight = CGFloat(500)
+        if #available(iOS 13.0, *) {
+            screenHeight = widget.window?.windowScene?.screen.bounds.height ?? 500
+        } else {
+            screenHeight = UIScreen.main.bounds.height
+        }
+        return screenHeight
+    }
+    
 }

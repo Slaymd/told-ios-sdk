@@ -98,6 +98,10 @@ scalar Date
     conditions: [SurveyTriggerCustomEventCondition]
   }
 
+  type CanUseSurvey {
+    canUse: Boolean
+  }
+
   input SurveyReplied {
     surveyId: ID
     date: Date
@@ -105,6 +109,6 @@ scalar Date
   }
 
   extend type Query {
-    checkIfCanUseWidgetWithSurvey(surveyID: ID!, preview: Boolean, os: String, mobileApp: String): Boolean
+    checkIfCanUseWidgetWithSurvey(surveyID: ID!, preview: Boolean, os: String, mobileApp: String): CanUseSurvey
     getEverySurveyAvailableToBeTriggered(folderID: ID!, type: String! navigator: String, language: String, country: String, device: String, listReplied: [SurveyReplied], preview: Boolean, version: String, os: String, mobileApp: String): [SurveyTrigger]
   }

@@ -75,6 +75,13 @@ let WIDGET_URL = "https://widget.told.club"
 
 If you are testing in local, be sure to set your local IP adress and not localhost.
 
+### Changing GraphQL API
+
+You need to re-build apollo graph by :
+
+* Removing ToldSDK/Classes/API
+* In root, type following command : ./Example/Pods/Apollo/apollo-ios-cli generate
+
 ### Publish new version
 
 Follow this steps to publish a new release :

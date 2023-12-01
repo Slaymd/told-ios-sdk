@@ -1,3 +1,5 @@
 query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $preview: Boolean, $os: String!, $mobileApp: String!) {
-    checkIfCanUseWidgetWithSurvey(surveyID: $surveyID, preview: $preview, os: $os, mobileApp: $mobileApp)
+    checkIfCanUseWidgetWithSurvey(surveyID: $surveyID, preview: $preview, os: $os, mobileApp: $mobileApp) {
+        canUse
+    }
 }

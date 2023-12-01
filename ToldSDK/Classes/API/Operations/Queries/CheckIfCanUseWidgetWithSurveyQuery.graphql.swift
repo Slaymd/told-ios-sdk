@@ -15,7 +15,10 @@ public extension ToldAPI {
             preview: $preview
             os: $os
             mobileApp: $mobileApp
-          )
+          ) {
+            __typename
+            canUse
+          }
         }
         """#
       ))
@@ -50,7 +53,7 @@ public extension ToldAPI {
 
       public static var __parentType: Apollo.ParentType { ToldAPI.Objects.Query }
       public static var __selections: [Apollo.Selection] { [
-        .field("checkIfCanUseWidgetWithSurvey", Bool?.self, arguments: [
+        .field("checkIfCanUseWidgetWithSurvey", CheckIfCanUseWidgetWithSurvey?.self, arguments: [
           "surveyID": .variable("surveyID"),
           "preview": .variable("preview"),
           "os": .variable("os"),
@@ -58,7 +61,23 @@ public extension ToldAPI {
         ]),
       ] }
 
-      public var checkIfCanUseWidgetWithSurvey: Bool? { __data["checkIfCanUseWidgetWithSurvey"] }
+      public var checkIfCanUseWidgetWithSurvey: CheckIfCanUseWidgetWithSurvey? { __data["checkIfCanUseWidgetWithSurvey"] }
+
+      /// CheckIfCanUseWidgetWithSurvey
+      ///
+      /// Parent Type: `CanUseSurvey`
+      public struct CheckIfCanUseWidgetWithSurvey: ToldAPI.SelectionSet {
+        public let __data: DataDict
+        public init(_dataDict: DataDict) { __data = _dataDict }
+
+        public static var __parentType: Apollo.ParentType { ToldAPI.Objects.CanUseSurvey }
+        public static var __selections: [Apollo.Selection] { [
+          .field("__typename", String.self),
+          .field("canUse", Bool?.self),
+        ] }
+
+        public var canUse: Bool? { __data["canUse"] }
+      }
     }
   }
 

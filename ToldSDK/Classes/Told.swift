@@ -201,7 +201,7 @@ public class Told {
                 completion(false)
                 return
             }
-            if let checkIfCanUseWidgetWithSurvey = data?.checkIfCanUseWidgetWithSurvey {
+            if let checkIfCanUseWidgetWithSurvey = data?.checkIfCanUseWidgetWithSurvey?.canUse {
                 completion(checkIfCanUseWidgetWithSurvey)
                 return
             }

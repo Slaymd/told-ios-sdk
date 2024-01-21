@@ -57,7 +57,6 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         
-        webView.backgroundColor = .systemPink
         webView.isOpaque = false
         
         webView.alpha = 0.0
@@ -184,11 +183,11 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
             let newWidgetHeight = value > Int(maxHeight) ? maxHeight : CGFloat(value)
             
             // Animate when widget increase its size
-//            let animated = self.widgetHeightValue < newWidgetHeight
+            let animated = self.widgetHeightValue < newWidgetHeight
             
             self.widgetHeightValue = newWidgetHeight
             
-            updateWebviewHeight(height: newWidgetHeight, animated: true)
+            updateWebviewHeight(height: newWidgetHeight, animated: animated)
             break
         case "ADD_COOKIE":
             guard let reply = values["reply"] as? Bool else {

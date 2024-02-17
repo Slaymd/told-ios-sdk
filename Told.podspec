@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '12.4'
 
-  s.source_files = 'ToldSDK/Classes/**/*'
+  s.source_files = 'Sources/ToldSDK/Classes/**/*'
   
   s.swift_version = '4.0'
   

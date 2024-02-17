@@ -12,7 +12,13 @@ iOS app running Swift 4.0 or above.
 
 ## Installation
 
-### 1. Install via Cocoapods
+### 1. Install package
+
+#### Swift Package Manager (SPM)
+
+To install ToldSDK via SPM, simply add the following URL : `https://github.com/Slaymd/told-ios-sdk.git` to your project dependencies.
+
+#### Cocoapods
 
 ToldSDK is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:

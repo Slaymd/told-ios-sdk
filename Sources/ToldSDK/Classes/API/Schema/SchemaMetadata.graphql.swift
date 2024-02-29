@@ -3,19 +3,19 @@
 
 import ApolloAPI
 
-public protocol ToldAPI_SelectionSet: ApolloAPI.SelectionSet & ApolloAPI.RootSelectionSet
+protocol ToldAPI_SelectionSet: ApolloAPI.SelectionSet & ApolloAPI.RootSelectionSet
 where Schema == ToldAPI.SchemaMetadata {}
 
-public protocol ToldAPI_InlineFragment: ApolloAPI.SelectionSet & ApolloAPI.InlineFragment
+protocol ToldAPI_InlineFragment: ApolloAPI.SelectionSet & ApolloAPI.InlineFragment
 where Schema == ToldAPI.SchemaMetadata {}
 
-public protocol ToldAPI_MutableSelectionSet: ApolloAPI.MutableRootSelectionSet
+protocol ToldAPI_MutableSelectionSet: ApolloAPI.MutableRootSelectionSet
 where Schema == ToldAPI.SchemaMetadata {}
 
-public protocol ToldAPI_MutableInlineFragment: ApolloAPI.MutableSelectionSet & ApolloAPI.InlineFragment
+protocol ToldAPI_MutableInlineFragment: ApolloAPI.MutableSelectionSet & ApolloAPI.InlineFragment
 where Schema == ToldAPI.SchemaMetadata {}
 
-public extension ToldAPI {
+extension ToldAPI {
   typealias ID = String
 
   typealias SelectionSet = ToldAPI_SelectionSet
@@ -27,9 +27,9 @@ public extension ToldAPI {
   typealias MutableInlineFragment = ToldAPI_MutableInlineFragment
 
   enum SchemaMetadata: ApolloAPI.SchemaMetadata {
-    public static let configuration: ApolloAPI.SchemaConfiguration.Type = SchemaConfiguration.self
+    static let configuration: ApolloAPI.SchemaConfiguration.Type = SchemaConfiguration.self
 
-    public static func objectType(forTypename typename: String) -> Object? {
+    static func objectType(forTypename typename: String) -> ApolloAPI.Object? {
       switch typename {
       case "Query": return ToldAPI.Objects.Query
       case "SurveyTriggerURL": return ToldAPI.Objects.SurveyTriggerURL

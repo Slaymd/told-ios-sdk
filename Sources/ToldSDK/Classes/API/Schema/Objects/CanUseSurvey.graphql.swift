@@ -3,8 +3,8 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Objects {
-  static let CanUseSurvey = Object(
+extension ToldAPI.Objects {
+  static let CanUseSurvey = ApolloAPI.Object(
     typename: "CanUseSurvey",
     implementedInterfaces: []
   )

@@ -3,59 +3,12 @@
 
 @_exported import ApolloAPI
 
-public extension ToldAPI {
+extension ToldAPI {
   class GetEverySurveyAvailableToBeTriggeredQuery: GraphQLQuery {
-    public static let operationName: String = "getEverySurveyAvailableToBeTriggered"
-    public static let document: ApolloAPI.DocumentType = .notPersisted(
+    static let operationName: String = "getEverySurveyAvailableToBeTriggered"
+    static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"""
-        query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $mobileApp: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) {
-          getEverySurveyAvailableToBeTriggered(
-            folderID: $folderID
-            type: $type
-            os: $os
-            mobileApp: $mobileApp
-            language: $language
-            version: $version
-            listReplied: $listReplied
-            preview: $preview
-          ) {
-            __typename
-            id
-            survey
-            kind
-            whenData {
-              __typename
-              seeItOnlyOnce
-              replyOnlyOnce
-            }
-            ... on SurveyTriggerScreen {
-              onAllScreen
-              onLoadScreen
-              delay {
-                __typename
-                value
-                active
-              }
-              condition {
-                __typename
-                variable
-                operator
-                value
-              }
-            }
-            ... on SurveyTriggerCustomEvent {
-              eventName
-              conditions {
-                __typename
-                key
-                operator
-                value
-              }
-            }
-          }
-        }
-        """#
+        #"query getEverySurveyAvailableToBeTriggered($folderID: ID!, $type: String!, $os: String, $mobileApp: String, $language: String, $version: String, $listReplied: [SurveyReplied], $preview: Boolean) { getEverySurveyAvailableToBeTriggered( folderID: $folderID type: $type os: $os mobileApp: $mobileApp language: $language version: $version listReplied: $listReplied preview: $preview ) { __typename id survey kind whenData { __typename seeItOnlyOnce replyOnlyOnce } ... on SurveyTriggerScreen { onAllScreen onLoadScreen delay { __typename value active } condition { __typename variable operator value } } ... on SurveyTriggerCustomEvent { eventName conditions { __typename key operator value } } } }"#
       ))
 
     public var folderID: ID
@@ -98,12 +51,12 @@ public extension ToldAPI {
       "preview": preview
     ] }
 
-    public struct Data: ToldAPI.SelectionSet {
-      public let __data: DataDict
-      public init(_dataDict: DataDict) { __data = _dataDict }
+    struct Data: ToldAPI.SelectionSet {
+      let __data: DataDict
+      init(_dataDict: DataDict) { __data = _dataDict }
 
-      public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.Query }
-      public static var __selections: [ApolloAPI.Selection] { [
+      static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.Query }
+      static var __selections: [ApolloAPI.Selection] { [
         .field("getEverySurveyAvailableToBeTriggered", [GetEverySurveyAvailableToBeTriggered?]?.self, arguments: [
           "folderID": .variable("folderID"),
           "type": .variable("type"),
@@ -116,17 +69,17 @@ public extension ToldAPI {
         ]),
       ] }
 
-      public var getEverySurveyAvailableToBeTriggered: [GetEverySurveyAvailableToBeTriggered?]? { __data["getEverySurveyAvailableToBeTriggered"] }
+      var getEverySurveyAvailableToBeTriggered: [GetEverySurveyAvailableToBeTriggered?]? { __data["getEverySurveyAvailableToBeTriggered"] }
 
       /// GetEverySurveyAvailableToBeTriggered
       ///
       /// Parent Type: `SurveyTrigger`
-      public struct GetEverySurveyAvailableToBeTriggered: ToldAPI.SelectionSet {
-        public let __data: DataDict
-        public init(_dataDict: DataDict) { __data = _dataDict }
+      struct GetEverySurveyAvailableToBeTriggered: ToldAPI.SelectionSet {
+        let __data: DataDict
+        init(_dataDict: DataDict) { __data = _dataDict }
 
-        public static var __parentType: ApolloAPI.ParentType { ToldAPI.Interfaces.SurveyTrigger }
-        public static var __selections: [ApolloAPI.Selection] { [
+        static var __parentType: ApolloAPI.ParentType { ToldAPI.Interfaces.SurveyTrigger }
+        static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
           .field("id", ToldAPI.ID.self),
           .field("survey", ToldAPI.ID.self),
@@ -136,135 +89,135 @@ public extension ToldAPI {
           .inlineFragment(AsSurveyTriggerCustomEvent.self),
         ] }
 
-        public var id: ToldAPI.ID { __data["id"] }
-        public var survey: ToldAPI.ID { __data["survey"] }
-        public var kind: String? { __data["kind"] }
-        public var whenData: WhenData? { __data["whenData"] }
+        var id: ToldAPI.ID { __data["id"] }
+        var survey: ToldAPI.ID { __data["survey"] }
+        var kind: String? { __data["kind"] }
+        var whenData: WhenData? { __data["whenData"] }
 
-        public var asSurveyTriggerScreen: AsSurveyTriggerScreen? { _asInlineFragment() }
-        public var asSurveyTriggerCustomEvent: AsSurveyTriggerCustomEvent? { _asInlineFragment() }
+        var asSurveyTriggerScreen: AsSurveyTriggerScreen? { _asInlineFragment() }
+        var asSurveyTriggerCustomEvent: AsSurveyTriggerCustomEvent? { _asInlineFragment() }
 
         /// GetEverySurveyAvailableToBeTriggered.WhenData
         ///
         /// Parent Type: `WhenData`
-        public struct WhenData: ToldAPI.SelectionSet {
-          public let __data: DataDict
-          public init(_dataDict: DataDict) { __data = _dataDict }
+        struct WhenData: ToldAPI.SelectionSet {
+          let __data: DataDict
+          init(_dataDict: DataDict) { __data = _dataDict }
 
-          public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.WhenData }
-          public static var __selections: [ApolloAPI.Selection] { [
+          static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.WhenData }
+          static var __selections: [ApolloAPI.Selection] { [
             .field("__typename", String.self),
             .field("seeItOnlyOnce", Bool?.self),
             .field("replyOnlyOnce", Bool?.self),
           ] }
 
-          public var seeItOnlyOnce: Bool? { __data["seeItOnlyOnce"] }
-          public var replyOnlyOnce: Bool? { __data["replyOnlyOnce"] }
+          var seeItOnlyOnce: Bool? { __data["seeItOnlyOnce"] }
+          var replyOnlyOnce: Bool? { __data["replyOnlyOnce"] }
         }
 
         /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen
         ///
         /// Parent Type: `SurveyTriggerScreen`
-        public struct AsSurveyTriggerScreen: ToldAPI.InlineFragment {
-          public let __data: DataDict
-          public init(_dataDict: DataDict) { __data = _dataDict }
+        struct AsSurveyTriggerScreen: ToldAPI.InlineFragment {
+          let __data: DataDict
+          init(_dataDict: DataDict) { __data = _dataDict }
 
-          public typealias RootEntityType = GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered
-          public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerScreen }
-          public static var __selections: [ApolloAPI.Selection] { [
+          typealias RootEntityType = GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered
+          static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerScreen }
+          static var __selections: [ApolloAPI.Selection] { [
             .field("onAllScreen", Bool?.self),
             .field("onLoadScreen", Bool?.self),
             .field("delay", Delay?.self),
             .field("condition", Condition?.self),
           ] }
 
-          public var onAllScreen: Bool? { __data["onAllScreen"] }
-          public var onLoadScreen: Bool? { __data["onLoadScreen"] }
-          public var delay: Delay? { __data["delay"] }
-          public var condition: Condition? { __data["condition"] }
-          public var id: ToldAPI.ID { __data["id"] }
-          public var survey: ToldAPI.ID { __data["survey"] }
-          public var kind: String? { __data["kind"] }
-          public var whenData: WhenData? { __data["whenData"] }
+          var onAllScreen: Bool? { __data["onAllScreen"] }
+          var onLoadScreen: Bool? { __data["onLoadScreen"] }
+          var delay: Delay? { __data["delay"] }
+          var condition: Condition? { __data["condition"] }
+          var id: ToldAPI.ID { __data["id"] }
+          var survey: ToldAPI.ID { __data["survey"] }
+          var kind: String? { __data["kind"] }
+          var whenData: WhenData? { __data["whenData"] }
 
           /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen.Delay
           ///
           /// Parent Type: `SurveyTriggerDelay`
-          public struct Delay: ToldAPI.SelectionSet {
-            public let __data: DataDict
-            public init(_dataDict: DataDict) { __data = _dataDict }
+          struct Delay: ToldAPI.SelectionSet {
+            let __data: DataDict
+            init(_dataDict: DataDict) { __data = _dataDict }
 
-            public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerDelay }
-            public static var __selections: [ApolloAPI.Selection] { [
+            static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerDelay }
+            static var __selections: [ApolloAPI.Selection] { [
               .field("__typename", String.self),
               .field("value", Int.self),
               .field("active", Bool.self),
             ] }
 
-            public var value: Int { __data["value"] }
-            public var active: Bool { __data["active"] }
+            var value: Int { __data["value"] }
+            var active: Bool { __data["active"] }
           }
 
           /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen.Condition
           ///
           /// Parent Type: `SurveyTriggerURLCondition`
-          public struct Condition: ToldAPI.SelectionSet {
-            public let __data: DataDict
-            public init(_dataDict: DataDict) { __data = _dataDict }
+          struct Condition: ToldAPI.SelectionSet {
+            let __data: DataDict
+            init(_dataDict: DataDict) { __data = _dataDict }
 
-            public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerURLCondition }
-            public static var __selections: [ApolloAPI.Selection] { [
+            static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerURLCondition }
+            static var __selections: [ApolloAPI.Selection] { [
               .field("__typename", String.self),
               .field("variable", String.self),
               .field("operator", String.self),
               .field("value", String.self),
             ] }
 
-            public var variable: String { __data["variable"] }
-            public var `operator`: String { __data["operator"] }
-            public var value: String { __data["value"] }
+            var variable: String { __data["variable"] }
+            var `operator`: String { __data["operator"] }
+            var value: String { __data["value"] }
           }
         }
 
         /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent
         ///
         /// Parent Type: `SurveyTriggerCustomEvent`
-        public struct AsSurveyTriggerCustomEvent: ToldAPI.InlineFragment {
-          public let __data: DataDict
-          public init(_dataDict: DataDict) { __data = _dataDict }
+        struct AsSurveyTriggerCustomEvent: ToldAPI.InlineFragment {
+          let __data: DataDict
+          init(_dataDict: DataDict) { __data = _dataDict }
 
-          public typealias RootEntityType = GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered
-          public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerCustomEvent }
-          public static var __selections: [ApolloAPI.Selection] { [
+          typealias RootEntityType = GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered
+          static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerCustomEvent }
+          static var __selections: [ApolloAPI.Selection] { [
             .field("eventName", String?.self),
             .field("conditions", [Condition?]?.self),
           ] }
 
-          public var eventName: String? { __data["eventName"] }
-          public var conditions: [Condition?]? { __data["conditions"] }
-          public var id: ToldAPI.ID { __data["id"] }
-          public var survey: ToldAPI.ID { __data["survey"] }
-          public var kind: String? { __data["kind"] }
-          public var whenData: WhenData? { __data["whenData"] }
+          var eventName: String? { __data["eventName"] }
+          var conditions: [Condition?]? { __data["conditions"] }
+          var id: ToldAPI.ID { __data["id"] }
+          var survey: ToldAPI.ID { __data["survey"] }
+          var kind: String? { __data["kind"] }
+          var whenData: WhenData? { __data["whenData"] }
 
           /// GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerCustomEvent.Condition
           ///
           /// Parent Type: `SurveyTriggerCustomEventCondition`
-          public struct Condition: ToldAPI.SelectionSet {
-            public let __data: DataDict
-            public init(_dataDict: DataDict) { __data = _dataDict }
+          struct Condition: ToldAPI.SelectionSet {
+            let __data: DataDict
+            init(_dataDict: DataDict) { __data = _dataDict }
 
-            public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerCustomEventCondition }
-            public static var __selections: [ApolloAPI.Selection] { [
+            static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.SurveyTriggerCustomEventCondition }
+            static var __selections: [ApolloAPI.Selection] { [
               .field("__typename", String.self),
               .field("key", String?.self),
               .field("operator", String?.self),
               .field("value", String?.self),
             ] }
 
-            public var key: String? { __data["key"] }
-            public var `operator`: String? { __data["operator"] }
-            public var value: String? { __data["value"] }
+            var key: String? { __data["key"] }
+            var `operator`: String? { __data["operator"] }
+            var value: String? { __data["value"] }
           }
         }
       }

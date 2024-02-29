@@ -3,6 +3,6 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Interfaces {
+extension ToldAPI.Interfaces {
   static let SurveyTrigger = Interface(name: "SurveyTrigger")
 }

@@ -3,24 +3,12 @@
 
 @_exported import ApolloAPI
 
-public extension ToldAPI {
+extension ToldAPI {
   class CheckIfCanUseWidgetWithSurveyQuery: GraphQLQuery {
-    public static let operationName: String = "checkIfCanUseWidgetWithSurvey"
-    public static let document: ApolloAPI.DocumentType = .notPersisted(
+    static let operationName: String = "checkIfCanUseWidgetWithSurvey"
+    static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"""
-        query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $preview: Boolean, $os: String!, $mobileApp: String!) {
-          checkIfCanUseWidgetWithSurvey(
-            surveyID: $surveyID
-            preview: $preview
-            os: $os
-            mobileApp: $mobileApp
-          ) {
-            __typename
-            canUse
-          }
-        }
-        """#
+        #"query checkIfCanUseWidgetWithSurvey($surveyID: ID!, $preview: Boolean, $os: String!, $mobileApp: String!) { checkIfCanUseWidgetWithSurvey( surveyID: $surveyID preview: $preview os: $os mobileApp: $mobileApp ) { __typename canUse } }"#
       ))
 
     public var surveyID: ID
@@ -47,12 +35,12 @@ public extension ToldAPI {
       "mobileApp": mobileApp
     ] }
 
-    public struct Data: ToldAPI.SelectionSet {
-      public let __data: DataDict
-      public init(_dataDict: DataDict) { __data = _dataDict }
+    struct Data: ToldAPI.SelectionSet {
+      let __data: DataDict
+      init(_dataDict: DataDict) { __data = _dataDict }
 
-      public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.Query }
-      public static var __selections: [ApolloAPI.Selection] { [
+      static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.Query }
+      static var __selections: [ApolloAPI.Selection] { [
         .field("checkIfCanUseWidgetWithSurvey", CheckIfCanUseWidgetWithSurvey?.self, arguments: [
           "surveyID": .variable("surveyID"),
           "preview": .variable("preview"),
@@ -61,22 +49,22 @@ public extension ToldAPI {
         ]),
       ] }
 
-      public var checkIfCanUseWidgetWithSurvey: CheckIfCanUseWidgetWithSurvey? { __data["checkIfCanUseWidgetWithSurvey"] }
+      var checkIfCanUseWidgetWithSurvey: CheckIfCanUseWidgetWithSurvey? { __data["checkIfCanUseWidgetWithSurvey"] }
 
       /// CheckIfCanUseWidgetWithSurvey
       ///
       /// Parent Type: `CanUseSurvey`
-      public struct CheckIfCanUseWidgetWithSurvey: ToldAPI.SelectionSet {
-        public let __data: DataDict
-        public init(_dataDict: DataDict) { __data = _dataDict }
+      struct CheckIfCanUseWidgetWithSurvey: ToldAPI.SelectionSet {
+        let __data: DataDict
+        init(_dataDict: DataDict) { __data = _dataDict }
 
-        public static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.CanUseSurvey }
-        public static var __selections: [ApolloAPI.Selection] { [
+        static var __parentType: ApolloAPI.ParentType { ToldAPI.Objects.CanUseSurvey }
+        static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
           .field("canUse", Bool?.self),
         ] }
 
-        public var canUse: Bool? { __data["canUse"] }
+        var canUse: Bool? { __data["canUse"] }
       }
     }
   }

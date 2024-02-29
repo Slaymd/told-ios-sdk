@@ -3,8 +3,8 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Objects {
-  static let Query = Object(
+extension ToldAPI.Objects {
+  static let Query = ApolloAPI.Object(
     typename: "Query",
     implementedInterfaces: []
   )

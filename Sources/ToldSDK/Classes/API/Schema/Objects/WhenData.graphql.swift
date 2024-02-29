@@ -3,8 +3,8 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Objects {
-  static let WhenData = Object(
+extension ToldAPI.Objects {
+  static let WhenData = ApolloAPI.Object(
     typename: "whenData",
     implementedInterfaces: []
   )

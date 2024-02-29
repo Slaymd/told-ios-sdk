@@ -3,8 +3,8 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Objects {
-  static let SurveyTriggerDelay = Object(
+extension ToldAPI.Objects {
+  static let SurveyTriggerDelay = ApolloAPI.Object(
     typename: "SurveyTriggerDelay",
     implementedInterfaces: []
   )

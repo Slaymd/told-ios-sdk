@@ -7,7 +7,7 @@
 
 import ApolloAPI
 
-public extension ToldAPI {
+extension ToldAPI {
   typealias Date = String
 
 }

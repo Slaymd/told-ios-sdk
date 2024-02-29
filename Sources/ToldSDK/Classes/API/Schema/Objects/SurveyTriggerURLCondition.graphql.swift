@@ -3,8 +3,8 @@
 
 import ApolloAPI
 
-public extension ToldAPI.Objects {
-  static let SurveyTriggerURLCondition = Object(
+extension ToldAPI.Objects {
+  static let SurveyTriggerURLCondition = ApolloAPI.Object(
     typename: "SurveyTriggerURLCondition",
     implementedInterfaces: []
   )

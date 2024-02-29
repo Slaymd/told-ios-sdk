@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Told'
-  s.version          = '1.1.0'
+  s.version          = '1.2.1'
   s.summary          = 'Official Told iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Sources/ToldSDK/Classes/**/*'
   
-  s.swift_version = '4.0'
+  s.swift_version = '5.0'
   
   # s.resource_bundles = {
   #   'ToldSDK' => ['ToldSDK/Assets/*.png']
@@ -40,5 +40,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Apollo', '~> 1.1.3'
+  s.dependency 'Apollo', '~> 1.9.0'
 end

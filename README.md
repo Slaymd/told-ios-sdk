@@ -85,13 +85,25 @@ If you are testing in local, be sure to set your local IP adress and not localho
 
 You need to re-build apollo graph by :
 
-* Removing ToldSDK/Classes/API
-* In root, type following command : ./Example/Pods/Apollo/apollo-ios-cli generate
+* Installing Apollo CLI : `swift package --allow-writing-to-package-directory apollo-cli-install`
+* Removing old generated files : `rm -rf ./Sources/ToldSDK/Classes/API`
+* In root, type following command : `./apollo-ios-cli generate --path ./apollo-codegen-config-spm.json`
 
 ### Publish new version
 
 Follow this steps to publish a new release :
 
-* Increment version in Told.podspec
+* Commit and push your updated codebase on a public repository
 * Create a git tag `git tag <version>` and push it with `git push --tags`
+
+#### SPM
+
+* That's it ! 
+
+#### Cocoapods
+
+* Increment version in Told.podspec
+* Remove apollo generated files : `rm -rf ./Sources/ToldSDK/Classes/API`
+* In root, type following command : `./apollo-ios-cli generate --path ./apollo-codegen-config-cocoapods.json`
 * Publish version to Cocoapods : `pod trunk push Told.podspec`
+

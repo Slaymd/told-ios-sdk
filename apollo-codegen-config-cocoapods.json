@@ -1,0 +1,32 @@
+{
+  "schemaNamespace" : "ToldAPI",
+  "options" : {
+    "cocoapodsCompatibleImportStatements" : true
+  },
+  "input" : {
+    "operationSearchPaths" : [
+      "Sources/**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "Sources/**/*.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./Sources/ToldSDK/Classes/API/",
+      "moduleType" : {
+        "embeddedInTarget" : {
+          "name" : "ToldSDK"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  }
+}

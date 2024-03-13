@@ -64,7 +64,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         
         webView.alpha = 0.0
         self.addSubview(webView)
-        self.bringSubview(toFront: webView)
+        self.bringSubviewToFront(webView)
     
         // Add style constraint
         self.heightConstraint = webView.heightAnchor.constraint(equalToConstant: 220)
@@ -97,8 +97,8 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         
         webView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         loadWidget()
     }
@@ -285,7 +285,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         self.webView.evaluateJavaScript("window.addEventListener('message', (e) => { window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(e.data), '*'); });")
     }
     
-    private func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    internal func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print("WebView did fail navigation with error: \(error.localizedDescription)")
     }
 }

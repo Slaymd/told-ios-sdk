@@ -66,8 +66,8 @@ public class Told {
         apiClient.fetch(query: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery(folderID: projectId, type: "IN_APP_MOBILE", os: "IOS", mobileApp: bundleIdentifier ?? "", language: .some(language), version: .some(version), listReplied: .some(storage.getRepliedSurveys()), preview: .some(params.contains(.preview)))) { result in
                                     
             if let errors = try? result.get().errors {
-                if (errors?.count ?? 0 > 0) {
-                    print("Told SDK not loaded correctly :", errors?[0].message ?? "(unknown)")
+                if (errors.count > 0) {
+                    print("Told SDK not loaded correctly :", errors[0].message ?? "(unknown)")
                     return
                 }
             }
@@ -77,9 +77,9 @@ public class Told {
                 return
             }
                         
-            triggers = data?.getEverySurveyAvailableToBeTriggered ?? []
+            triggers = data.getEverySurveyAvailableToBeTriggered ?? []
             
-            print("Initializing \(data?.getEverySurveyAvailableToBeTriggered?.count ?? 0) survey triggers.")
+            print("Initializing \(data.getEverySurveyAvailableToBeTriggered?.count ?? 0) survey triggers.")
             
             loadingTriggers = false
             
@@ -195,8 +195,8 @@ public class Told {
         apiClient.fetch(query: ToldAPI.CheckIfCanUseWidgetWithSurveyQuery(surveyID: surveyId, preview: .some(params.contains(.preview)), os: "IOS", mobileApp: bundleIdentifier ?? "")) { result in
             
             if let errors = try? result.get().errors {
-                if (errors?.count ?? 0 > 0) {
-                    print("Told SDK Error while checking if can use widget :", errors?[0].message ?? "(unknown)")
+                if (errors.count > 0) {
+                    print("Told SDK Error while checking if can use widget :", errors[0].message ?? "(unknown)")
                     return
                 }
             }
@@ -205,7 +205,7 @@ public class Told {
                 completion(false)
                 return
             }
-            if let checkIfCanUseWidgetWithSurvey = data?.checkIfCanUseWidgetWithSurvey?.canUse {
+            if let checkIfCanUseWidgetWithSurvey = data.checkIfCanUseWidgetWithSurvey?.canUse {
                 completion(checkIfCanUseWidgetWithSurvey)
                 return
             }

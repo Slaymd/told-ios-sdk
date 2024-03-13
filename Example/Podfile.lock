@@ -1,7 +1,7 @@
 PODS:
-  - Apollo (1.9.0):
-    - Apollo/Core (= 1.9.0)
-  - Apollo/Core (1.9.0)
+  - Apollo (1.9.2):
+    - Apollo/Core (= 1.9.2)
+  - Apollo/Core (1.9.2)
   - Told (1.2.1):
     - Apollo (~> 1.9.0)
 
@@ -17,8 +17,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Apollo: b917452d3e05452c080e18cdb8ad45a74d484979
-  Told: 5939d8a98eab22422d90b3154fd8004a3c2cb486
+  Apollo: 3dc53a7422184ea21f01d4bcbc0fafee1c2a3497
+  Told: d04df118b3713d52edb32059679f005f5d33e5ec
 
 PODFILE CHECKSUM: 6fecf612fac5e8b6eb51f6c940356dd90d7f4b24
 

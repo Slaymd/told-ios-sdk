@@ -8,6 +8,8 @@
 #if !os(macOS)
 
 import Apollo
+import Foundation
+import UIKit
 
 //let SERVER_API_URL = "http://192.168.1.55:7700"
 //let SERVER_API_URL = "https://preprodapi.told.club"
@@ -226,6 +228,8 @@ public class Told {
             }
         }
     }
+    
+    
     
     private static func checkScreenTriggers(_ screenName: String, _ viewController: UIViewController?) {
         

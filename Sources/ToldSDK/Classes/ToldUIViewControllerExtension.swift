@@ -8,6 +8,7 @@
 #if !os(macOS)
 
 import UIKit
+import Foundation
 
 extension UIViewController {
 

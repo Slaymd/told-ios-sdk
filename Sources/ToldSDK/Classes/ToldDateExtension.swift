@@ -7,6 +7,8 @@
 
 #if !os(macOS)
 
+import Foundation
+
 internal extension Date {
     
     func getISODateString() -> String {

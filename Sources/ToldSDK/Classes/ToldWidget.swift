@@ -10,6 +10,7 @@
 import UIKit
 import WebKit
 import SafariServices
+import Foundation
 
 internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler {
     

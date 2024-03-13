@@ -7,6 +7,8 @@
 
 #if !os(macOS)
 
+import Foundation
+
 internal class ToldStorage {
     
     private var surveys: [ToldSurveyData] = []

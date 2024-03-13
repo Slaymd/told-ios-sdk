@@ -7,6 +7,9 @@
 
 #if !os(macOS)
 
+import UIKit
+import Foundation
+
 internal class ToldUtils {
     
     static func isTriggerConditionTrue(condition: ToldAPI.GetEverySurveyAvailableToBeTriggeredQuery.Data.GetEverySurveyAvailableToBeTriggered.AsSurveyTriggerScreen.Condition?, arg: String) -> Bool {

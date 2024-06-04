@@ -27,9 +27,11 @@ extension UIViewController {
 
         var viewControllerName = NSStringFromClass(type(of: self))
 
-        if (!viewControllerName.starts(with: "\(bundleExecutableName ?? "").")) { return }
-
-        viewControllerName = viewControllerName.replacingOccurrences(of: "\(bundleExecutableName ?? "").", with: "")
+        if (Told.enableScreenPrefixReplace == true) {
+            if (!viewControllerName.starts(with: "\(bundleExecutableName ?? "").")) { return }
+            
+            viewControllerName = viewControllerName.replacingOccurrences(of: "\(bundleExecutableName ?? "").", with: "")
+        }
 
         Told.currentViewController = self
         Told.currentViewControllerName = viewControllerName

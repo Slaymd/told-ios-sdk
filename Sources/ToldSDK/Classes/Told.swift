@@ -45,6 +45,8 @@ public class Told {
     internal static var currentHiddenFields: [String: String] = [:]
     internal static var currentHiddenFieldsFormatted: String = ""
     
+    public static var enableScreenPrefixReplace = true
+    
     // MARK: Public methods
             
     public static func initSDK(projectId: String, params: [ToldSurveyParams] = [], hiddenFields: [String: String] = [:], language: String = "fr") {

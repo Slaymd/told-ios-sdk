@@ -92,7 +92,6 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
             heightConstraint!,
         ])
         
-        webView.layer.cornerRadius = 25.0
         webView.layer.masksToBounds = true
         
         webView.isHidden = true

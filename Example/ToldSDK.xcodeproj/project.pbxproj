@@ -506,7 +506,7 @@
 			baseConfigurationReference = BA78FB8BFB4F3C0CFC1F6F2D /* Pods-ToldSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";
@@ -526,7 +526,7 @@
 			baseConfigurationReference = 2227722D3DCA1560806ADD83 /* Pods-ToldSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = B3P87LQ9S9;
 				INFOPLIST_FILE = ToldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Told Demo";

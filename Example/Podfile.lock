@@ -2,7 +2,7 @@ PODS:
   - Apollo (1.9.2):
     - Apollo/Core (= 1.9.2)
   - Apollo/Core (1.9.2)
-  - Told (1.2.2):
+  - Told (1.2.5):
     - Apollo (~> 1.9.0)
 
 DEPENDENCIES:
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Apollo: 3dc53a7422184ea21f01d4bcbc0fafee1c2a3497
-  Told: db40883901a778ed66dfb21a46f2ea304b939a89
+  Told: 08e3e4125fcd8efcd07397ffb9c19d759fdad5c0
 
 PODFILE CHECKSUM: 6fecf612fac5e8b6eb51f6c940356dd90d7f4b24
 

@@ -105,10 +105,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
     // MARK: Public methods
     
     public func loadWidget() {
-        let hasHiddenFields = Told.currentHiddenFieldsFormatted.count > 0
-        let hiddenFieldsQueryURL = hasHiddenFields ? "&\(Told.currentHiddenFieldsFormatted)" : ""
-        
-        if let url = URL(string: "\(Told.WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)\(hiddenFieldsQueryURL)") {
+        if let url = URL(string: "\(Told.WIDGET_URL)/?id=\(self.surveyId)&toldProjectID=\(self.projectId)") {
             webView.load(URLRequest(url: url))
         }
     }
@@ -134,6 +131,7 @@ internal class ToldWidget: UIView, WKNavigationDelegate, WKScriptMessageHandler 
         case "IS_LOADED":
             // Send initial ios configuration messages to survey
             self.webView.evaluateJavaScript("window.postMessage({type: 'OS_TYPE', value: 'IOS'}, '*'); window.postMessage({type: 'DEVICE_TYPE', value: 'phone'}, '*');")
+            self.webView.evaluateJavaScript("window.postMessage({type: 'UPDATE_HIDDENFIELDS', value: '\(Told.currentHiddenFieldsFormatted ?? "{}")'}, '*');")
             webView.isHidden = false
             
             UIView.transition(with: webView, duration: 0.5, options: .transitionCrossDissolve, animations: {

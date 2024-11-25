@@ -63,6 +63,19 @@ internal class ToldUtils {
         return queryItems.joined(separator: "&")
     }
     
+    static func convertToJSONString(_ dictionary: [String: String]) -> String {
+        do {
+            if (dictionary.isEmpty) { return "[]" }
+            let jsonArray = dictionary.map { ["key": $0.key, "value": $0.value] }
+
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
+            return String(data: jsonData, encoding: .utf8) ?? "[]"
+        } catch {
+            print("Error: JSONSerialization issue: \(error)")
+            return "[]"
+        }
+    }
+    
     static func getScreenHeight(widget: ToldWidget) -> CGFloat {
         var screenHeight = CGFloat(500)
         if #available(iOS 13.0, *) {

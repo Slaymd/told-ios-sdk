@@ -20,8 +20,11 @@ import UIKit
 
 public class Told {
     
-    internal static var SERVER_API_URL = "https://api.told.club"
-    internal static var WIDGET_URL = "https://widget.told.club"
+//    internal static var SERVER_API_URL = "https://api.told.club"
+//    internal static var WIDGET_URL = "https://widget.told.club"
+    
+    internal static var SERVER_API_URL = "http://localhost:7700/graphql"
+    internal static var WIDGET_URL = "http://localhost:3001"
     
     internal static var currentViewController: UIViewController?
     internal static var currentViewControllerName: String? {
@@ -43,7 +46,7 @@ public class Told {
     private static var defaultParams: [ToldSurveyParams] = []
     
     internal static var currentHiddenFields: [String: String] = [:]
-    internal static var currentHiddenFieldsFormatted: String = ""
+    internal static var currentHiddenFieldsFormatted: String?
     
     public static var enableScreenPrefixReplace = true
     
@@ -57,7 +60,8 @@ public class Told {
 
         currentProjectId = projectId
         currentHiddenFields = hiddenFields
-        currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
+        //            currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
+        currentHiddenFieldsFormatted = ToldUtils.convertToJSONString(hiddenFields)
         defaultParams = params
                         
         loadingTriggers = true
@@ -99,11 +103,15 @@ public class Told {
     public static func addHiddenFields(hiddenFields: [String: String], setData: Bool = true) {
         if (setData) {
             currentHiddenFields = hiddenFields
-            currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
+//            currentHiddenFieldsFormatted = ToldUtils.convertToStringQueryParams(hiddenFields)
+            currentHiddenFieldsFormatted = ToldUtils.convertToJSONString(hiddenFields)
             return
         }
         
         currentHiddenFields += hiddenFields
+        currentHiddenFieldsFormatted = ToldUtils.convertToJSONString(hiddenFields)
+        
+        print(currentHiddenFields)
     }
     
     public static func sendCustomEvent(eventName: String, eventProperties: [String: String]?) {

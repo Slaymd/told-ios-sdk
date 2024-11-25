@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Told'
-  s.version          = '1.2.5'
+  s.version          = '1.2.6'
   s.summary          = 'Official Told iOS SDK'
 
 # This description is used to generate tags and improve search results.

@@ -20,11 +20,11 @@ import UIKit
 
 public class Told {
     
-//    internal static var SERVER_API_URL = "https://api.told.club"
-//    internal static var WIDGET_URL = "https://widget.told.club"
+    internal static var SERVER_API_URL = "https://api.told.club"
+    internal static var WIDGET_URL = "https://widget.told.club"
     
-    internal static var SERVER_API_URL = "http://localhost:7700/graphql"
-    internal static var WIDGET_URL = "http://localhost:3001"
+//    internal static var SERVER_API_URL = "http://localhost:7700/graphql"
+//    internal static var WIDGET_URL = "http://localhost:3001"
     
     internal static var currentViewController: UIViewController?
     internal static var currentViewControllerName: String? {
@@ -125,10 +125,11 @@ public class Told {
         }
                 
         guard let customEventTrigger = eventTrigger??.asSurveyTriggerCustomEvent else { return }
-                        
+                                
         // If no conditions, start survey
         if (customEventTrigger.conditions == nil || customEventTrigger.conditions!.isEmpty) {
             Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
+            return
         }
                         
         // Check conditions
@@ -183,6 +184,7 @@ public class Told {
                     storage.setReplied(surveyId: surveyId)
                 }
             }
+            
             widgets.append(widget)
             vc.view.addSubview(widget)
             widget.setup()

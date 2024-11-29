@@ -115,7 +115,7 @@ public class Told {
     }
     
     public static func sendCustomEvent(eventName: String, eventProperties: [String: String]?) {
-        let eventTrigger = triggers.first { surveyTrigger in
+        let matchingTriggers = triggers.filter { surveyTrigger in
             guard let customTrigger = surveyTrigger?.asSurveyTriggerCustomEvent else {
                 return false
             }
@@ -123,32 +123,40 @@ public class Told {
             if customTrigger.eventName != nil && customTrigger.eventName == eventName { return true }
             return false
         }
-                
-        guard let customEventTrigger = eventTrigger??.asSurveyTriggerCustomEvent else { return }
-                                
-        // If no conditions, start survey
-        if (customEventTrigger.conditions == nil || customEventTrigger.conditions!.isEmpty) {
-            Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
-            return
-        }
+        
+        for eventTrigger in matchingTriggers {
+            guard let customEventTrigger = eventTrigger?.asSurveyTriggerCustomEvent else { continue }
                         
-        // Check conditions
-        for condition in customEventTrigger.conditions! {
-            if let eventProperty = eventProperties?.first(where: { (key: String, value: String) in
-                if (condition?.key == key) { return true }
-                return false
-            }) {
-                if (!ToldUtils.isCustomTriggerConditionTrue(condition: condition!, arg: eventProperty.value)) {
-                    // eventProperty value doesnt corresponds to the condition, so cancel survey trigger
-                    return
+            // If no conditions, start survey
+            if (customEventTrigger.conditions == nil || customEventTrigger.conditions!.isEmpty) {
+                Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
+                break
+            }
+            
+            var conditionsAreMet = false
+            
+            // Check conditions
+            for condition in customEventTrigger.conditions! {
+                if let eventProperty = eventProperties?.first(where: { (key: String, value: String) in
+                    if (condition?.key == key) { return true }
+                    return false
+                }) {
+                    if (!ToldUtils.isCustomTriggerConditionTrue(condition: condition!, arg: eventProperty.value)) {
+                        // eventProperty value doesnt corresponds to the condition, so cancel survey trigger
+                        break
+                    }
+                    conditionsAreMet = true
+                } else {
+                    // No eventProperty corresponding to condition, so cancel survey trigger
+                    break
                 }
-            } else {
-                // No eventProperty corresponding to condition, so cancel survey trigger
-                return
+            }
+            
+            if (conditionsAreMet) {
+                Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
+                break
             }
         }
-                
-        Told.start(id: customEventTrigger.survey, projectId: currentProjectId, params: defaultParams)
     }
     
     public static func start(id surveyId: String, projectId: String) {
